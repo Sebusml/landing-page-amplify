@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "landingpageamplify",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/sebastianm/src/landing-page-amplify/amplify/backend/api/landingpageamplify/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2022-12-31T07:14:31.804Z",
+      "keyDescription": "cool landing page with graphql API keu"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authlandingpageamplifyed0d18f4"
+      }
+    ]
+  }
+}

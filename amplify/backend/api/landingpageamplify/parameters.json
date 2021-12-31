@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "landingpageamplify",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authlandingpageamplifyed0d18f4",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
