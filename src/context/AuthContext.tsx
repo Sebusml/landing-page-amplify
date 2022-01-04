@@ -9,6 +9,7 @@ import {
 } from "react";
 import { CognitoUser } from "@aws-amplify/auth";
 import { Auth, Hub } from "aws-amplify";
+import { HubCapsule } from "@aws-amplify/core";
 
 interface LoggedUserContextType {
   user: CognitoUser | null;
@@ -26,21 +27,30 @@ interface Props {
 export default function AuthContext({ children }: Props): ReactElement {
   const [user, setUser] = useState<CognitoUser | null>(null);
 
-  // At the start check the user
-  useEffect(() => {
-    checkUser();
-  }, []);
+  // TODO: this callback is not being executed on successful signups.
+  // Check docs https://docs.amplify.aws/guides/authentication/listening-for-auth-events/q/platform/js/
+  useEffect(() => Hub.listen("auth", authCallback), []);
 
-  // Check user on authentification events
-  useEffect(() => Hub.listen("auth", checkUser), []); // TODO: does it work? I removed tons of {} and arrow funcs
-
-  async function checkUser() {
-    Auth.currentAuthenticatedUser()
-      .then((user) => setUser(user))
-      .catch((error) => {
-        setUser(null);
-        console.log(error);
-      });
+  async function authCallback(data: HubCapsule) {
+    switch (data.payload.event) {
+      case "signIn":
+        console.log("user signed in");
+        break;
+      case "signUp":
+        console.log("user signed up");
+        break;
+      case "signOut":
+        console.log("user signed out");
+        break;
+      case "signIn_failure":
+        console.log("user sign in failed");
+        break;
+      case "configured":
+        console.log("the Auth module is configured");
+        break;
+      default:
+        console.log("Not recognized auth event: ", data.payload.event);
+    }
   }
 
   return (

@@ -21,9 +21,13 @@ export default function Signin() {
     handleSubmit,
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     Auth.signIn(data.email, data.password)
-      .then(() => router.push(`/`))
+      .then((logedUser) => {
+        // Set user to global context, React Hub callback is not working on success
+        setUser(logedUser);
+        router.push(`/`);
+      })
       .catch((error) => setSignInError(error.message));
   };
 
