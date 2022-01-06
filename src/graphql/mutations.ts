@@ -10,6 +10,9 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
+      contents
+      image
+      upvotes
       comments {
         items {
           id
@@ -35,6 +38,9 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
+      contents
+      image
+      upvotes
       comments {
         items {
           id
@@ -60,6 +66,9 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
+      contents
+      image
+      upvotes
       comments {
         items {
           id
@@ -87,6 +96,9 @@ export const createComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
         comments {
           nextToken
         }
@@ -112,6 +124,9 @@ export const updateComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
         comments {
           nextToken
         }
@@ -137,6 +152,9 @@ export const deleteComment = /* GraphQL */ `
       post {
         id
         title
+        contents
+        image
+        upvotes
         comments {
           nextToken
         }
