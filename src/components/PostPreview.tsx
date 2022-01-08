@@ -13,7 +13,6 @@ interface Props {
 // TODO: Add Likes mutations and state
 // TODO: Fetch number of comments for a post
 // TODO: (optional) Give loged users the option to comment on posts.
-// TODO: Prevent going routing to post when clicking comments.
 export default function PostPreview({ post }: Props): ReactElement {
   const router = useRouter();
   const [likedEffect, setLikeEffect] = useState(false);
@@ -100,7 +99,7 @@ export default function PostPreview({ post }: Props): ReactElement {
       </div>
       {/* Toggle Comments */}
       {showComments && comments && (
-        <div className="space-y-4">
+        <div className="space-y-4" onClick={(e) => e.stopPropagation()}>
           {comments.map((comment) => (
             <CommentPreview key={comment.id} comment={comment}></CommentPreview>
           ))}
