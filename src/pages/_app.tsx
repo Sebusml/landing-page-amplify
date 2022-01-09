@@ -3,13 +3,18 @@ import type { AppProps } from "next/app";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "../aws-exports";
 import AuthContext from "../context/AuthContext";
+import React from "react";
+import Header from "../components/Header";
 Amplify.configure({ ...awsconfig, ssr: true });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AuthContext>
-      <Component {...pageProps} />
-    </AuthContext>
+    <React.Fragment>
+      <AuthContext>
+        <Header />
+        <Component {...pageProps} />
+      </AuthContext>
+    </React.Fragment>
   );
 }
 
