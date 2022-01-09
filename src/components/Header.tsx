@@ -1,22 +1,17 @@
 import Link from "next/link";
 import { useUser } from "../context/AuthContext";
-
-const navigation = [{ name: "Posts", href: "/", current: true }];
-import Auth, { CognitoUser } from "@aws-amplify/auth";
-import { useState } from "react";
-
-function classNames(...classes: Array<any>) {
-  return classes.filter(Boolean).join(" ");
-}
+import Auth from "@aws-amplify/auth";
+import { MenuIcon } from "@heroicons/react/solid";
 
 // Code from https://github.com/tailwindtoolbox/Minimal-Blog/blob/master/index.html
 // TODO: Hide login/signup if user is loged in
 // TODO: Add user Icon when loged in
+// TODO: Fix Mobile menu UI for logged users, icon and logout are unaligned
 export default function Header() {
   let { user } = useUser();
 
-  const signOut = async () => {
-    await Auth.signOut().catch((e) => console.log(e));
+  const signOut = () => {
+    Auth.signOut().catch((e) => console.log(e));
   };
 
   return (
@@ -29,9 +24,23 @@ export default function Header() {
             </a>
           </Link>
         </div>
+        {/* Mobile menu button */}
+        <div className="block lg:hidden pr-4">
+          <button
+            id="nav-toggle"
+            className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-green-500 appearance-none focus:outline-none"
+            onClick={() => {
+              document
+                .getElementById("nav-content")!
+                .classList.toggle("hidden");
+            }}
+          >
+            <MenuIcon className="h-3 text-gray-500"></MenuIcon>
+          </button>
+        </div>
 
         <div
-          className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-gray-100 md:bg-transparent z-20"
+          className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-gray-100 md:bg-transparent"
           id="nav-content"
         >
           {user && (
