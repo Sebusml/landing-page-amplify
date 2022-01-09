@@ -29,7 +29,9 @@ const Home: NextPage = () => {
 
   return (
     <div className="antialiased mx-auto max-w-screen-sm">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900">Posts</h3>
+      <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+        Welcome to our blog
+      </h1>
       <div className="space-y-4">
         {posts.map((post) => (
           <PostPreview key={post.id} post={post}></PostPreview>
