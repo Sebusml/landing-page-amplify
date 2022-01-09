@@ -21,13 +21,13 @@ const UserContext = createContext<LoggedUserContextType>(
 );
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactElement[];
 }
 
 export default function AuthContext({ children }: Props): ReactElement {
   const [user, setUser] = useState<CognitoUser | null>(null);
 
-  // TODO: this callback is not being executed on successful signups.
+  // TODO: this callback is not being executed on successful signins.
   // Check docs https://docs.amplify.aws/guides/authentication/listening-for-auth-events/q/platform/js/
   useEffect(() => Hub.listen("auth", authCallback), []);
 
@@ -41,6 +41,7 @@ export default function AuthContext({ children }: Props): ReactElement {
         break;
       case "signOut":
         console.log("user signed out");
+        setUser(null);
         break;
       case "signIn_failure":
         console.log("user sign in failed");
