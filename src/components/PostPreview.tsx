@@ -13,6 +13,7 @@ interface Props {
 // TODO: Add Likes mutations and state
 // TODO: Fetch number of comments for a post
 // TODO: (optional) Give loged users the option to comment on posts.
+// tailwind code sourced from https://tailwindcomponents.com/component/comment-section
 export default function PostPreview({ post }: Props): ReactElement {
   const router = useRouter();
   const [likedEffect, setLikeEffect] = useState(false);

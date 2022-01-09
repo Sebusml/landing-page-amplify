@@ -49,7 +49,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
 
   return (
     <div className="container w-full max-w-screen-sm mx-auto pt-5">
-      <div className="w-full text-xl text-gray-800 leading-normal">
+      <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
         {/* Title */}
         <div className="font-sans">
           <p className="text-base md:text-sm text-green-500 font-bold">
