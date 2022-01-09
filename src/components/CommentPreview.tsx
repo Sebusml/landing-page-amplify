@@ -17,8 +17,8 @@ export default function CommentPreview({ comment }: Props): ReactElement {
           alt=""
         />
       </div>
-      <div className="flex-1 bg-gray-100 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-        <strong>{comment.owner}</strong>{" "}
+      <div className="flex-1 bg-gray-100 rounded-lg px-4 py-2 sm:px-6 leading-relaxed">
+        <span className="text-sm font-bold">{comment.owner}</span>{" "}
         <span className="text-xs text-gray-400">{formattedDate}</span>
         <p className="text-xs sm:text-sm">{comment.content}</p>
       </div>
