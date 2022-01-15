@@ -100,11 +100,11 @@ export default function PostPreview({ post }: Props): ReactElement {
       </div>
       {/* Toggle Comments */}
       {showComments && comments && (
-        <div className="space-y-4" onClick={(e) => e.stopPropagation()}>
+        <ul className="mt-4 space-y-4" onClick={(e) => e.stopPropagation()}>
           {comments.map((comment) => (
             <CommentPreview key={comment.id} comment={comment}></CommentPreview>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );

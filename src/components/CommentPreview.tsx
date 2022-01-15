@@ -9,7 +9,7 @@ export default function CommentPreview({ comment }: Props): ReactElement {
   const formattedDate = new Date(comment.createdAt).toDateString();
 
   return (
-    <div className="flex mb-4">
+    <li className="flex mb-4">
       <div className="flex-shrink-0 mr-3">
         <img
           className="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8"
@@ -22,6 +22,6 @@ export default function CommentPreview({ comment }: Props): ReactElement {
         <span className="text-xs text-gray-400">{formattedDate}</span>
         <p className="text-xs sm:text-sm">{comment.content}</p>
       </div>
-    </div>
+    </li>
   );
 }
