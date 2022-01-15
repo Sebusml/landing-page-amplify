@@ -1,29 +1,75 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Link from "next/link";
-import { withSSRContext } from "aws-amplify";
+import { API, withSSRContext } from "aws-amplify";
 import { getPost, listPosts } from "../../graphql/queries";
-import { GetPostQuery, ListPostsQuery, Post, Comment } from "../../API";
+import {
+  GetPostQuery,
+  ListPostsQuery,
+  Post,
+  Comment,
+  CreateCommentInput,
+  CreateCommentMutation,
+} from "../../API";
 import { ThumbUpIcon } from "@heroicons/react/outline";
 import { AnnotationIcon } from "@heroicons/react/solid";
 import CommentPreview from "../../components/CommentPreview";
+import { useUser } from "../../context/AuthContext";
+import { useRouter } from "next/router";
+import { createComment } from "../../graphql/mutations";
+import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api-graphql";
 
 interface Props {
   post: Post;
 }
 
-// TODO: Submit comments
+interface CommentFormInput {
+  content: string;
+  owner: string;
+}
+
 // TODO: Like button functionality
 // TODO: Next post
 // TODO: owner picture
 // Templated from https://github.com/tailwindtoolbox/Minimal-Blog/blob/master/index.html
 export default function IndividualPost({ post }: Props): ReactElement {
+  const { user } = useUser();
+  const router = useRouter();
   const [likedEffect, setLikeEffect] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
 
+  const { register, resetField, handleSubmit } = useForm<CommentFormInput>();
+
+  const onSubmit: SubmitHandler<CommentFormInput> = async (newComment) => {
+    if (!user) {
+      router.push(`/signin`);
+      return;
+    }
+
+    if (!showComments) {
+      setShowComments(!showComments);
+    }
+
+    const newCommentInput: CreateCommentInput = {
+      postCommentsId: post.id,
+      content: newComment.content,
+    };
+
+    const { data } = (await API.graphql({
+      query: createComment,
+      variables: { input: newCommentInput },
+      authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+    })) as { data: CreateCommentMutation };
+
+    // Update local comments state
+    setComments([...comments, data.createComment as Comment]);
+    // Clear textbox input for new comments
+    resetField("content");
+  };
+
   const onLikePost = (event) => {
-    event.stopPropagation();
     // Like button animation
     if (!likedEffect) {
       setLikeEffect(true);
@@ -33,23 +79,15 @@ export default function IndividualPost({ post }: Props): ReactElement {
     }
   };
 
-  const onShowComments = async (event) => {
-    event.stopPropagation();
-    try {
-      // TODO: Why the nextToken is alawys null for the post comments?
-      const postComments = post.comments;
-      if (postComments?.items) {
-        setComments(postComments!.items as Comment[]);
-        setShowComments(!showComments);
-      }
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (post.comments?.items) {
+      setComments(post.comments?.items as Comment[]);
     }
-  };
+  }, []);
 
   return (
     <div className="container w-full max-w-screen-sm mx-auto pt-5">
-      <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
+      <div className="w-full px-4 text-xl text-gray-800 leading-normal">
         {/* Title */}
         <div className="font-sans">
           <p className="text-base md:text-sm text-green-500 font-bold">
@@ -70,7 +108,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
         <p className="py-6">{post.contents}</p>
       </div>
       {/* <!--Divider--> */}
-      <div className="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal">
+      <div className="w-full px-4 text-xl text-gray-800 leading-normal">
         {/* <!--Likes and replies buttons--> */}
         <div className="mt-4 mb-4 flex items-center">
           <button
@@ -87,13 +125,13 @@ export default function IndividualPost({ post }: Props): ReactElement {
 
           <button
             className="flex items-center hover:bg-gray-100 rounded p-1"
-            onClick={onShowComments}
+            onClick={() => setShowComments(!showComments)}
           >
             &nbsp;&nbsp;
             <AnnotationIcon className="h-6 text-gray-500"></AnnotationIcon>
             <span className="text-sm text-gray-500 font-semibold">
               &nbsp;
-              {post.comments?.items ? post.comments?.items.length : 0}
+              {comments.length}
               &nbsp;Replies
             </span>
           </button>
@@ -101,28 +139,55 @@ export default function IndividualPost({ post }: Props): ReactElement {
 
         {/* Toggle Comments */}
         {showComments && comments && (
-          <div className="space-y-4" onClick={(e) => e.stopPropagation()}>
+          <ul
+            className="space-y-4 last:mb-4"
+            onClick={(e) => e.stopPropagation()}
+          >
             {comments.map((comment) => (
               <CommentPreview
                 key={comment.id}
                 comment={comment}
               ></CommentPreview>
             ))}
-          </div>
+          </ul>
         )}
       </div>
       {/* Leave a comment */}
       <div className="w-full px-4 flex items-center mb-4">
-        <textarea
-          placeholder="What are your thoughts?"
-          className="flex-1 appearance-none border border-gray-400 rounded shadow-md p-3 text-gray-600 mr-2 focus:outline-none"
-        ></textarea>
+        <form
+          id="commentForm"
+          method="POST"
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex items-center mb-4"
+        >
+          <textarea
+            id="commentTextArea"
+            placeholder="What are your thoughts?"
+            required
+            className="w-full flex appearance-none border border-gray-400 rounded shadow-md p-3 text-gray-600 mr-2 focus:outline-none"
+            {...register("content", {
+              required: {
+                value: true,
+                message: "Comment cannot be empty",
+              },
+              maxLength: {
+                value: 500,
+                message: "Comments must be less than 500 characters",
+              },
+            })}
+          ></textarea>
+        </form>
       </div>
 
       <div className="w-full px-4 flex items-center">
         {" "}
         <div className="justify-end">
-          <button className="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">
+          <button
+            className="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full"
+            type="submit"
+            form="commentForm"
+            value="Submit"
+          >
             Submit
           </button>
         </div>
