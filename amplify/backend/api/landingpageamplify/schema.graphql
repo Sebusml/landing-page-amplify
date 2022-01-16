@@ -11,7 +11,7 @@ type Post
   title: String!
   contents: String!
   image: String
-  upvotes: Int! @default(value: 0)
+  upvotes: Int!
   comments: [Comment] @hasMany
 }
 
@@ -27,4 +27,9 @@ type Comment
   id: ID!
   post: Post @belongsTo
   content: String!
+}
+
+type Subscription {
+  onCommentByPostId(postCommentsId: ID!): Comment
+    @aws_subscribe(mutations: ["createComment"])
 }

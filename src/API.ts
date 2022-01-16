@@ -495,6 +495,37 @@ export type ListCommentsQuery = {
   } | null,
 };
 
+export type OnCommentByPostIdSubscriptionVariables = {
+  postCommentsId: string,
+};
+
+export type OnCommentByPostIdSubscription = {
+  onCommentByPostId?:  {
+    __typename: "Comment",
+    id: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+    postCommentsId?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
 export type OnCreatePostSubscriptionVariables = {
   owner?: string | null,
 };

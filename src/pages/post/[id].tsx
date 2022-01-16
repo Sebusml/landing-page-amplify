@@ -2,24 +2,16 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Link from "next/link";
-import { API, withSSRContext } from "aws-amplify";
+import { API, graphqlOperation, withSSRContext } from "aws-amplify";
 import { getPost, listPosts } from "../../graphql/queries";
-import {
-  GetPostQuery,
-  ListPostsQuery,
-  Post,
-  Comment,
-  CreateCommentInput,
-  CreateCommentMutation,
-} from "../../API";
+import { GetPostQuery, ListPostsQuery, Post, Comment } from "../../API";
 import { ThumbUpIcon } from "@heroicons/react/outline";
 import { AnnotationIcon } from "@heroicons/react/solid";
 import CommentPreview from "../../components/CommentPreview";
 import { useUser } from "../../context/AuthContext";
 import { useRouter } from "next/router";
-import { createComment } from "../../graphql/mutations";
-import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api-graphql";
-
+import pushNewComment from "../api/comment/pushNewComment";
+import subscribeToNewCommentInPost from "../api/comment/subscribeToNewCommentInPost";
 interface Props {
   post: Post;
 }
@@ -38,35 +30,30 @@ export default function IndividualPost({ post }: Props): ReactElement {
   const router = useRouter();
   const [likedEffect, setLikeEffect] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<Comment[]>(
+    post.comments?.items as Comment[]
+  );
 
   const { register, resetField, handleSubmit } = useForm<CommentFormInput>();
 
-  const onSubmit: SubmitHandler<CommentFormInput> = async (newComment) => {
+  const toggleShowComments = () => setShowComments((old) => !old);
+
+  const onSubmitComment: SubmitHandler<CommentFormInput> = async (
+    newComment
+  ) => {
+    // Only logged users can comment
     if (!user) {
       router.push(`/signin`);
       return;
     }
-
+    // Show comments so user can see his new comment
     if (!showComments) {
-      setShowComments(!showComments);
+      setShowComments(true);
     }
 
-    const newCommentInput: CreateCommentInput = {
-      postCommentsId: post.id,
-      content: newComment.content,
-    };
-
-    const { data } = (await API.graphql({
-      query: createComment,
-      variables: { input: newCommentInput },
-      authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
-    })) as { data: CreateCommentMutation };
-
-    // Update local comments state
-    setComments([...comments, data.createComment as Comment]);
-    // Clear textbox input for new comments
-    resetField("content");
+    pushNewComment(post.id, newComment.content)
+      .then((_) => resetField("content")) // Ignore new comment obj response since updates are done with subscription
+      .catch((error) => console.log(error));
   };
 
   const onLikePost = (event) => {
@@ -79,11 +66,25 @@ export default function IndividualPost({ post }: Props): ReactElement {
     }
   };
 
+  // Initially get comments from Post object
   useEffect(() => {
     if (post.comments?.items) {
       setComments(post.comments?.items as Comment[]);
     }
-  }, []);
+  }, [post.comments?.items]);
+
+  // Subscribe to new comments in post.
+  // TODO: Subscribe to Likes
+  useEffect(() => {
+    const newCommentSubscription = subscribeToNewCommentInPost(
+      post.id,
+      (comment: Comment) => setComments((comments) => [...comments, comment])
+    );
+    // cleanup
+    return () => {
+      newCommentSubscription.unsubscribe();
+    };
+  }, [post.id]);
 
   return (
     <div className="container w-full max-w-screen-sm mx-auto pt-5">
@@ -125,7 +126,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
 
           <button
             className="flex items-center hover:bg-gray-100 rounded p-1"
-            onClick={() => setShowComments(!showComments)}
+            onClick={toggleShowComments}
           >
             &nbsp;&nbsp;
             <AnnotationIcon className="h-6 text-gray-500"></AnnotationIcon>
@@ -157,7 +158,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
         <form
           id="commentForm"
           method="POST"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmitComment)}
           className="w-full flex items-center mb-4"
         >
           <textarea
@@ -230,6 +231,8 @@ export default function IndividualPost({ post }: Props): ReactElement {
   );
 }
 
+// TODO: Will need to test this one in prod(?) CDN posts can have a stale version of comments and likes!
+// only the owner and the content is static
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const SSR = withSSRContext();
 

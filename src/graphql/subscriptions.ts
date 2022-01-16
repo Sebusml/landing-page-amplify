@@ -2,6 +2,31 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCommentByPostId = /* GraphQL */ `
+  subscription OnCommentByPostId($postCommentsId: ID!) {
+    onCommentByPostId(postCommentsId: $postCommentsId) {
+      id
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      content
+      createdAt
+      updatedAt
+      postCommentsId
+      owner
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($owner: String) {
     onCreatePost(owner: $owner) {
