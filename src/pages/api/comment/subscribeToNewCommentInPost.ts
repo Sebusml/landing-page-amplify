@@ -1,7 +1,8 @@
 import { API } from "aws-amplify";
 import { onCommentByPostId } from "../../../graphql/subscriptions";
 import Observable from "zen-observable-ts";
-import { OnCommentByPostIdSubscription } from "../../../API";
+import { OnCommentByPostIdSubscription, Comment } from "../../../API";
+import { Dispatch, SetStateAction } from "react";
 
 interface GraphQlResponse {
   value: { data: OnCommentByPostIdSubscription };
@@ -9,7 +10,7 @@ interface GraphQlResponse {
 
 export default function subscribeToNewCommentInPost(
   postId: string,
-  callback: CallableFunction
+  setComments: Dispatch<SetStateAction<Comment[]>>
 ) {
   const ql = API.graphql({
     query: onCommentByPostId,
@@ -20,7 +21,10 @@ export default function subscribeToNewCommentInPost(
 
   const commentsSubscription = ql.subscribe({
     next: (payload: GraphQlResponse) => {
-      callback(payload.value.data.onCommentByPostId);
+      setComments((comments) => [
+        ...comments,
+        payload.value.data.onCommentByPostId as Comment,
+      ]);
     },
     error: (payload) => console.log("ERROR!!! ", payload),
   });

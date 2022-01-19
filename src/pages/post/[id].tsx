@@ -78,7 +78,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
   useEffect(() => {
     const newCommentSubscription = subscribeToNewCommentInPost(
       post.id,
-      (comment: Comment) => setComments((comments) => [...comments, comment])
+      setComments
     );
     // cleanup
     return () => {
