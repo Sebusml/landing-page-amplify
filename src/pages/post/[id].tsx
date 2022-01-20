@@ -12,6 +12,7 @@ import { useUser } from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import pushNewComment from "../api/comment/pushNewComment";
 import subscribeToNewCommentInPost from "../api/comment/subscribeToNewCommentInPost";
+import pushNewLike from "../api/postLike/pushNewLike";
 interface Props {
   post: Post;
 }
@@ -30,6 +31,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
   const router = useRouter();
   const [likedEffect, setLikeEffect] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [likesCount, setLikesCount] = useState(post.upvotes);
   const [comments, setComments] = useState<Comment[]>(
     post.comments?.items as Comment[]
   );
@@ -64,6 +66,20 @@ export default function IndividualPost({ post }: Props): ReactElement {
         setLikeEffect(false);
       }, 1500);
     }
+
+    // Only logged users can like stuff
+    if (!user) {
+      router.push(`/signin`);
+      return;
+    }
+
+    // Immediately update so UI feels more responsive
+    setLikesCount((x) => x + 1);
+    // Users can like a post as many times as they like :D!
+    pushNewLike(post.id).catch((error) => {
+      console.log(error);
+      setLikesCount((x) => x - 1);
+    });
   };
 
   // Initially get comments from Post object
@@ -120,7 +136,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
               className={`${likedEffect && "animate-bounce"} h-6 text-gray-500`}
             ></ThumbUpIcon>
             <span className="text-sm text-gray-500 font-semibold">
-              &nbsp;{post.upvotes}&nbsp;Likes&nbsp;&nbsp;
+              &nbsp;{likesCount}&nbsp;Likes&nbsp;&nbsp;
             </span>
           </button>
 

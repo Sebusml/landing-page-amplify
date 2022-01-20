@@ -154,6 +154,41 @@ export type DeleteCommentInput = {
   id: string,
 };
 
+export type CreatePostLikeInput = {
+  id?: string | null,
+  postID: string,
+  value: number,
+};
+
+export type ModelPostLikeConditionInput = {
+  postID?: ModelIDInput | null,
+  value?: ModelIntInput | null,
+  and?: Array< ModelPostLikeConditionInput | null > | null,
+  or?: Array< ModelPostLikeConditionInput | null > | null,
+  not?: ModelPostLikeConditionInput | null,
+};
+
+export type PostLike = {
+  __typename: "PostLike",
+  id: string,
+  postID: string,
+  post?: Post | null,
+  value: number,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type UpdatePostLikeInput = {
+  id: string,
+  postID?: string | null,
+  value?: number | null,
+};
+
+export type DeletePostLikeInput = {
+  id: string,
+};
+
 export type ModelPostFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
@@ -178,6 +213,21 @@ export type ModelCommentFilterInput = {
   or?: Array< ModelCommentFilterInput | null > | null,
   not?: ModelCommentFilterInput | null,
   postCommentsId?: ModelIDInput | null,
+};
+
+export type ModelPostLikeFilterInput = {
+  id?: ModelIDInput | null,
+  postID?: ModelIDInput | null,
+  value?: ModelIntInput | null,
+  and?: Array< ModelPostLikeFilterInput | null > | null,
+  or?: Array< ModelPostLikeFilterInput | null > | null,
+  not?: ModelPostLikeFilterInput | null,
+};
+
+export type ModelPostLikeConnection = {
+  __typename: "ModelPostLikeConnection",
+  items:  Array<PostLike | null >,
+  nextToken?: string | null,
 };
 
 export type CreatePostMutationVariables = {
@@ -372,6 +422,102 @@ export type DeleteCommentMutation = {
   } | null,
 };
 
+export type CreatePostLikeMutationVariables = {
+  input: CreatePostLikeInput,
+  condition?: ModelPostLikeConditionInput | null,
+};
+
+export type CreatePostLikeMutation = {
+  createPostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdatePostLikeMutationVariables = {
+  input: UpdatePostLikeInput,
+  condition?: ModelPostLikeConditionInput | null,
+};
+
+export type UpdatePostLikeMutation = {
+  updatePostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeletePostLikeMutationVariables = {
+  input: DeletePostLikeInput,
+  condition?: ModelPostLikeConditionInput | null,
+};
+
+export type DeletePostLikeMutation = {
+  deletePostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
 export type GetPostQueryVariables = {
   id: string,
 };
@@ -489,6 +635,70 @@ export type ListCommentsQuery = {
       createdAt: string,
       updatedAt: string,
       postCommentsId?: string | null,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetPostLikeQueryVariables = {
+  id: string,
+};
+
+export type GetPostLikeQuery = {
+  getPostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListPostLikesQueryVariables = {
+  filter?: ModelPostLikeFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPostLikesQuery = {
+  listPostLikes?:  {
+    __typename: "ModelPostLikeConnection",
+    items:  Array< {
+      __typename: "PostLike",
+      id: string,
+      postID: string,
+      post?:  {
+        __typename: "Post",
+        id: string,
+        title: string,
+        contents: string,
+        image?: string | null,
+        upvotes: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      value: number,
+      createdAt: string,
+      updatedAt: string,
       owner?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -708,6 +918,99 @@ export type OnDeleteCommentSubscription = {
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreatePostLikeSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnCreatePostLikeSubscription = {
+  onCreatePostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdatePostLikeSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnUpdatePostLikeSubscription = {
+  onUpdatePostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeletePostLikeSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnDeletePostLikeSubscription = {
+  onDeletePostLike?:  {
+    __typename: "PostLike",
+    id: string,
+    postID: string,
+    post?:  {
+      __typename: "Post",
+      id: string,
+      title: string,
+      contents: string,
+      image?: string | null,
+      upvotes: number,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    value: number,
+    createdAt: string,
+    updatedAt: string,
     owner?: string | null,
   } | null,
 };

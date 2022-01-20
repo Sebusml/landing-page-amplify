@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "landingpageamplifyed0d18f4": {}
+      },
+      "function": {
+        "postLikeTrigger": {
+          "deploymentBucketName": "amplify-landingpageamplify-dev-230357-deployment",
+          "s3Key": "amplify-builds/postLikeTrigger-73744e57314b4c5a5174-build.zip"
+        },
+        "landingpageamplifylandingpagelambdalayer": {
+          "deploymentBucketName": "amplify-landingpageamplify-dev-230357-deployment",
+          "s3Key": "amplify-builds/landingpageamplifylandingpagelambdalayer-LambdaLayerVersiona189ce55-build.zip"
+        }
       }
     }
   }

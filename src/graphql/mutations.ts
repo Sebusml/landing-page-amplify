@@ -170,3 +170,87 @@ export const deleteComment = /* GraphQL */ `
     }
   }
 `;
+export const createPostLike = /* GraphQL */ `
+  mutation CreatePostLike(
+    $input: CreatePostLikeInput!
+    $condition: ModelPostLikeConditionInput
+  ) {
+    createPostLike(input: $input, condition: $condition) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updatePostLike = /* GraphQL */ `
+  mutation UpdatePostLike(
+    $input: UpdatePostLikeInput!
+    $condition: ModelPostLikeConditionInput
+  ) {
+    updatePostLike(input: $input, condition: $condition) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deletePostLike = /* GraphQL */ `
+  mutation DeletePostLike(
+    $input: DeletePostLikeInput!
+    $condition: ModelPostLikeConditionInput
+  ) {
+    deletePostLike(input: $input, condition: $condition) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

@@ -11,6 +11,7 @@ type Post
   title: String!
   contents: String!
   image: String
+  # TODO: Right now upvotes is updated with a lambda trigger. Probably a better way is to use 'PostLike @hasMany' and only link the 'value' prop (with fields tag) from the PostLike table
   upvotes: Int!
   comments: [Comment] @hasMany
 }
@@ -32,4 +33,21 @@ type Comment
 type Subscription {
   onCommentByPostId(postCommentsId: ID!): Comment
     @aws_subscribe(mutations: ["createComment"])
+}
+
+# Users that liked a post can only known about their likes
+# TODO: Users could get live updates of likes, create a new subscription that only returns values so that users cannot known who likes stuff
+type PostLike
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, delete, read] }
+      { allow: private, operations: [] }
+      { allow: public, operations: [] }
+    ]
+  ) {
+  id: ID!
+  postID: ID!
+  post: Post @hasOne(fields: ["postID"])
+  value: Int!
 }

@@ -177,3 +177,78 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreatePostLike = /* GraphQL */ `
+  subscription OnCreatePostLike($owner: String) {
+    onCreatePostLike(owner: $owner) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdatePostLike = /* GraphQL */ `
+  subscription OnUpdatePostLike($owner: String) {
+    onUpdatePostLike(owner: $owner) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeletePostLike = /* GraphQL */ `
+  subscription OnDeletePostLike($owner: String) {
+    onDeletePostLike(owner: $owner) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

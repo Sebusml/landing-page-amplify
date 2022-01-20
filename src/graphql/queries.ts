@@ -105,3 +105,57 @@ export const listComments = /* GraphQL */ `
     }
   }
 `;
+export const getPostLike = /* GraphQL */ `
+  query GetPostLike($id: ID!) {
+    getPostLike(id: $id) {
+      id
+      postID
+      post {
+        id
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listPostLikes = /* GraphQL */ `
+  query ListPostLikes(
+    $filter: ModelPostLikeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPostLikes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        postID
+        post {
+          id
+          title
+          contents
+          image
+          upvotes
+          createdAt
+          updatedAt
+          owner
+        }
+        value
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
