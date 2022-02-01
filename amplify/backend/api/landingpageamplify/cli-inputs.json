@@ -7,13 +7,13 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 365,
-      "apiKeyExpirationDate": "2022-12-31T07:14:31.804Z",
-      "keyDescription": "cool landing page with graphql API keu"
+      "apiKeyExpirationDate": "2023-02-01T03:29:14.357Z",
+      "keyDescription": "myapikeyforlanding"
     },
     "additionalAuthTypes": [
       {
         "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authlandingpageamplifyed0d18f4"
+        "cognitoUserPoolId": "authlandingpageamplifyv2f0adca00f0adca00"
       }
     ]
   }

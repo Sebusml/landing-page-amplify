@@ -5,6 +5,7 @@
 	ENV
 	REGION
 Amplify Params - DO NOT EDIT */
+
 const AWS = require("aws-sdk");
 const ddb = new AWS.DynamoDB.DocumentClient();
 

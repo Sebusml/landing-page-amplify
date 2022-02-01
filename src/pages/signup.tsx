@@ -4,16 +4,23 @@ import { Auth } from "aws-amplify";
 import { useRouter } from "next/router";
 import { LockClosedIcon, SparklesIcon } from "@heroicons/react/solid";
 import { useUser } from "../context/AuthContext";
+import { ISignUpResult } from "amazon-cognito-identity-js";
+import { CognitoUser } from "@aws-amplify/auth";
 
 interface IFormInput {
   username: string;
   password: string;
+  email: string;
+  name: string;
+  code: string;
 }
 
-export default function Signin() {
+export default function Signup() {
   const { user, setUser } = useUser();
   const router = useRouter();
-  const [signInError, setSignInError] = useState<string>("");
+  const [signUpError, setSignUpError] = useState<string>("");
+  const [showCode, setShowCode] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
 
   const {
     register,
@@ -22,14 +29,49 @@ export default function Signin() {
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    Auth.signIn(data.username, data.password)
-      .then((logedUser) => {
-        // Set user to global context, React Hub callback is not working on success
+    if (showCode) {
+      confirmSignUp(data);
+    } else {
+      signUpWithEmailAndPassword(data)
+        .then((_) => setShowCode(true))
+        .catch((error) => {
+          console.error(error);
+          setSignUpError(error.message);
+          setOpen(true);
+        });
+    }
+  };
+
+  async function signUpWithEmailAndPassword(
+    data: IFormInput
+  ): Promise<ISignUpResult> {
+    const { username, password, email, name } = data;
+    return Auth.signUp({
+      username,
+      password,
+      attributes: {
+        email,
+        name,
+      },
+    });
+  }
+
+  async function confirmSignUp(data: IFormInput) {
+    const { username, password, code } = data;
+    try {
+      await Auth.confirmSignUp(username, code);
+      const logedUser = await Auth.signIn(username, password);
+      console.log("Successs, singed in a user", logedUser);
+      if (logedUser) {
         setUser(logedUser);
         router.push(`/`);
-      })
-      .catch((error) => setSignInError(error.message));
-  };
+      } else {
+        throw new Error("Something went wrong :'(");
+      }
+    } catch (error) {
+      console.log("error confirming sign up", error);
+    }
+  }
 
   return (
     <>
@@ -42,7 +84,7 @@ export default function Signin() {
             />
 
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              Create a new account
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{" "}
@@ -81,6 +123,44 @@ export default function Signin() {
                 />
               </div>
               <div>
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="email-address"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Email address"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Please enter a valid email.",
+                    },
+                  })}
+                />
+              </div>
+              <div>
+                <label htmlFor="publicname" className="sr-only">
+                  PublicName
+                </label>
+                <input
+                  id="publicname"
+                  type="publicname"
+                  autoComplete="publicname"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Public name"
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "Please enter a valid public name.",
+                    },
+                  })}
+                />
+              </div>
+              <div>
                 <label htmlFor="password" className="sr-only">
                   Password
                 </label>
@@ -103,6 +183,27 @@ export default function Signin() {
                     },
                   })}
                 />
+                {showCode && (
+                  <div>
+                    <label htmlFor="verificationcode" className="sr-only">
+                      Verification Code
+                    </label>
+                    <input
+                      id="verificationcode"
+                      type="verificationcode"
+                      autoComplete="verificationcode"
+                      required
+                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      placeholder="Enter Verification Code"
+                      {...register("code", {
+                        required: {
+                          value: true,
+                          message: "Please enter the verification code.",
+                        },
+                      })}
+                    />
+                  </div>
+                )}
                 <span className="text-xs text-red-700" id="passwordHelp">
                   {errors.password ? errors.password.message : null}
                 </span>
@@ -146,12 +247,12 @@ export default function Signin() {
                     aria-hidden="true"
                   />
                 </span>
-                Sign in
+                Sign up
               </button>
             </div>
           </form>
-          {/* Error login message */}
-          {signInError && (
+          {/* Error signup message */}
+          {signUpError && (
             <div
               className="relative px-4 py-3 leading-normal text-red-700 bg-red-100 rounded-lg"
               role="alert"
@@ -165,7 +266,7 @@ export default function Signin() {
                   ></path>
                 </svg>
               </span>
-              <p className="ml-6">{signInError}</p>
+              <p className="ml-6">{signUpError}</p>
             </div>
           )}
         </div>

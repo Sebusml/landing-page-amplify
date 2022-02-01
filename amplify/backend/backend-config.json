@@ -1,17 +1,16 @@
 {
   "auth": {
-    "landingpageamplifyed0d18f4": {
+    "landingpageamplifyv2f0adca00f0adca00": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
+        "usernameAttributes": [],
         "signupAttributes": [
-          "EMAIL"
+          "EMAIL",
+          "NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
@@ -37,15 +36,15 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2022-12-31T07:14:31.804Z",
-              "description": "cool landing page with graphql API keu"
+              "apiKeyExpirationDate": "2023-02-01T03:29:14.357Z",
+              "description": "myapikeyforlanding"
             }
           },
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authlandingpageamplifyed0d18f4"
+                "userPoolId": "authlandingpageamplifyv2f0adca00f0adca00"
               }
             }
           ]
@@ -54,12 +53,7 @@
     }
   },
   "function": {
-    "landingpageamplifylandingpagelambdalayer": {
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true
-    },
-    "postLikeTrigger": {
+    "landingpageamplifylikebutton": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
@@ -69,13 +63,6 @@
           "resourceName": "landingpageamplify",
           "attributes": [
             "GraphQLAPIIdOutput"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "landingpageamplifylandingpagelambdalayer",
-          "attributes": [
-            "Arn"
           ]
         }
       ]

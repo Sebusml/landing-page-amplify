@@ -1,28 +1,24 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-landingpageamplify-dev-230357-authRole",
-      "UnauthRoleArn": "arn:aws:iam::239154607851:role/amplify-landingpageamplify-dev-230357-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::239154607851:role/amplify-landingpageamplify-dev-230357-authRole",
+      "AuthRoleName": "amplify-landingpageamplifyv2-dev-225717-authRole",
+      "UnauthRoleArn": "arn:aws:iam::239154607851:role/amplify-landingpageamplifyv2-dev-225717-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::239154607851:role/amplify-landingpageamplifyv2-dev-225717-authRole",
       "Region": "us-west-1",
-      "DeploymentBucketName": "amplify-landingpageamplify-dev-230357-deployment",
-      "UnauthRoleName": "amplify-landingpageamplify-dev-230357-unauthRole",
-      "StackName": "amplify-landingpageamplify-dev-230357",
-      "StackId": "arn:aws:cloudformation:us-west-1:239154607851:stack/amplify-landingpageamplify-dev-230357/d3bf07b0-6a07-11ec-a97c-02ca909cb885",
-      "AmplifyAppId": "d2jnjki30n7lmx"
+      "DeploymentBucketName": "amplify-landingpageamplifyv2-dev-225717-deployment",
+      "UnauthRoleName": "amplify-landingpageamplifyv2-dev-225717-unauthRole",
+      "StackName": "amplify-landingpageamplifyv2-dev-225717",
+      "StackId": "arn:aws:cloudformation:us-west-1:239154607851:stack/amplify-landingpageamplifyv2-dev-225717/de453660-8199-11ec-8bfd-06a978dac8a5",
+      "AmplifyAppId": "dn3d429rbaayg"
     },
     "categories": {
       "auth": {
-        "landingpageamplifyed0d18f4": {}
+        "landingpageamplifyv2f0adca00f0adca00": {}
       },
       "function": {
-        "postLikeTrigger": {
-          "deploymentBucketName": "amplify-landingpageamplify-dev-230357-deployment",
-          "s3Key": "amplify-builds/postLikeTrigger-73744e57314b4c5a5174-build.zip"
-        },
-        "landingpageamplifylandingpagelambdalayer": {
-          "deploymentBucketName": "amplify-landingpageamplify-dev-230357-deployment",
-          "s3Key": "amplify-builds/landingpageamplifylandingpagelambdalayer-LambdaLayerVersiona189ce55-build.zip"
+        "landingpageamplifylikebutton": {
+          "deploymentBucketName": "amplify-landingpageamplifyv2-dev-225717-deployment",
+          "s3Key": "amplify-builds/landingpageamplifylikebutton-5536504d5a7a504e4f32-build.zip"
         }
       }
     }

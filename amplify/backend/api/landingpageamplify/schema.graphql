@@ -8,12 +8,19 @@ type Post
     ]
   ) {
   id: ID!
+  type: String!
+    @index(
+      name: "postByDate"
+      queryField: "postsByDate"
+      sortKeyFields: ["createdAt"]
+    )
   title: String!
   contents: String!
   image: String
   # TODO: Right now upvotes is updated with a lambda trigger. Probably a better way is to use 'PostLike @hasMany' and only link the 'value' prop (with fields tag) from the PostLike table
   upvotes: Int!
-  comments: [Comment] @hasMany
+  comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
+  createdAt: String!
 }
 
 type Comment
@@ -26,12 +33,13 @@ type Comment
     ]
   ) {
   id: ID!
-  post: Post @belongsTo
+  postId: ID! @index(name: "byPost", sortKeyFields: ["createdAt"])
   content: String!
+  createdAt: String!
 }
 
 type Subscription {
-  onCommentByPostId(postCommentsId: ID!): Comment
+  onCommentByPostId(postId: ID!): Comment
     @aws_subscribe(mutations: ["createComment"])
 }
 
@@ -48,6 +56,5 @@ type PostLike
   ) {
   id: ID!
   postID: ID!
-  post: Post @hasOne(fields: ["postID"])
   value: Int!
 }

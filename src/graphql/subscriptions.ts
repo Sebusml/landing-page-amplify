@@ -3,26 +3,13 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCommentByPostId = /* GraphQL */ `
-  subscription OnCommentByPostId($postCommentsId: ID!) {
-    onCommentByPostId(postCommentsId: $postCommentsId) {
+  subscription OnCommentByPostId($postId: ID!) {
+    onCommentByPostId(postId: $postId) {
       id
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      postId
       content
       createdAt
       updatedAt
-      postCommentsId
       owner
     }
   }
@@ -31,6 +18,7 @@ export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($owner: String) {
     onCreatePost(owner: $owner) {
       id
+      type
       title
       contents
       image
@@ -38,10 +26,10 @@ export const onCreatePost = /* GraphQL */ `
       comments {
         items {
           id
+          postId
           content
           createdAt
           updatedAt
-          postCommentsId
           owner
         }
         nextToken
@@ -56,6 +44,7 @@ export const onUpdatePost = /* GraphQL */ `
   subscription OnUpdatePost($owner: String) {
     onUpdatePost(owner: $owner) {
       id
+      type
       title
       contents
       image
@@ -63,10 +52,10 @@ export const onUpdatePost = /* GraphQL */ `
       comments {
         items {
           id
+          postId
           content
           createdAt
           updatedAt
-          postCommentsId
           owner
         }
         nextToken
@@ -81,6 +70,7 @@ export const onDeletePost = /* GraphQL */ `
   subscription OnDeletePost($owner: String) {
     onDeletePost(owner: $owner) {
       id
+      type
       title
       contents
       image
@@ -88,10 +78,10 @@ export const onDeletePost = /* GraphQL */ `
       comments {
         items {
           id
+          postId
           content
           createdAt
           updatedAt
-          postCommentsId
           owner
         }
         nextToken
@@ -106,23 +96,10 @@ export const onCreateComment = /* GraphQL */ `
   subscription OnCreateComment($owner: String) {
     onCreateComment(owner: $owner) {
       id
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      postId
       content
       createdAt
       updatedAt
-      postCommentsId
       owner
     }
   }
@@ -131,23 +108,10 @@ export const onUpdateComment = /* GraphQL */ `
   subscription OnUpdateComment($owner: String) {
     onUpdateComment(owner: $owner) {
       id
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      postId
       content
       createdAt
       updatedAt
-      postCommentsId
       owner
     }
   }
@@ -156,23 +120,10 @@ export const onDeleteComment = /* GraphQL */ `
   subscription OnDeleteComment($owner: String) {
     onDeleteComment(owner: $owner) {
       id
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      postId
       content
       createdAt
       updatedAt
-      postCommentsId
       owner
     }
   }
@@ -182,19 +133,6 @@ export const onCreatePostLike = /* GraphQL */ `
     onCreatePostLike(owner: $owner) {
       id
       postID
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       value
       createdAt
       updatedAt
@@ -207,19 +145,6 @@ export const onUpdatePostLike = /* GraphQL */ `
     onUpdatePostLike(owner: $owner) {
       id
       postID
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       value
       createdAt
       updatedAt
@@ -232,19 +157,6 @@ export const onDeletePostLike = /* GraphQL */ `
     onDeletePostLike(owner: $owner) {
       id
       postID
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       value
       createdAt
       updatedAt

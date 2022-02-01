@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"7.6.10\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"7.6.13\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -15,10 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "functionlandingpageamplifylandingpagelambdalayerArn": {
-      "Type": "String",
-      "Default": "functionlandingpageamplifylandingpagelambdalayerArn"
     },
     "apilandingpageamplifyGraphQLAPIIdOutput": {
       "Type": "String",
@@ -55,12 +51,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "postLikeTrigger",
+            "landingpageamplifylikebutton",
             {
               "Fn::Join": [
                 "",
                 [
-                  "postLikeTrigger",
+                  "landingpageamplifylikebutton",
                   "-",
                   {
                     "Ref": "env"
@@ -116,11 +112,7 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [
-          {
-            "Ref": "functionlandingpageamplifylandingpagelambdalayerArn"
-          }
-        ],
+        "Layers": [],
         "Timeout": 25
       }
     },
@@ -130,12 +122,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "landingpageamplifyLambdaRoleb7bd9723",
+            "landingpageamplifyv2LambdaRole8fadc301",
             {
               "Fn::Join": [
                 "",
                 [
-                  "landingpageamplifyLambdaRoleb7bd9723",
+                  "landingpageamplifyv2LambdaRole8fadc301",
                   "-",
                   {
                     "Ref": "env"

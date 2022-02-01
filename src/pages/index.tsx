@@ -1,9 +1,9 @@
-import { API } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useUser } from "../context/AuthContext";
-import { listPosts } from "../graphql/queries";
-import { ListPostsQuery, Post } from "../API";
+import { postsByDate } from "../graphql/queries";
+import { PostsByDateQuery, Post, ModelSortDirection } from "../API";
 import PostPreview from "../components/PostPreview";
 
 const Home: NextPage = () => {
@@ -12,13 +12,18 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const fetchPostsFromApi = async () => {
-      const allPosts = (await API.graphql({ query: listPosts })) as {
-        data: ListPostsQuery;
+      const allPosts = (await API.graphql(
+        graphqlOperation(postsByDate, {
+          type: "post",
+          sortDirection: ModelSortDirection.DESC,
+        })
+      )) as {
+        data: PostsByDateQuery;
         errors: any[];
       };
-      if (allPosts.data.listPosts) {
-        setPosts(allPosts.data.listPosts.items as Post[]);
-        return allPosts.data.listPosts.items as Post[];
+      if (allPosts.data.postsByDate) {
+        setPosts(allPosts.data.postsByDate.items as Post[]);
+        return allPosts.data.postsByDate.items as Post[];
       } else {
         throw new Error("Could not get the posts");
       }

@@ -14,9 +14,7 @@ export default function subscribeToNewCommentInPost(
 ) {
   const ql = API.graphql({
     query: onCommentByPostId,
-    variables: {
-      postCommentsId: postId,
-    },
+    variables: { postId },
   }) as Observable<object>;
 
   const commentsSubscription = ql.subscribe({

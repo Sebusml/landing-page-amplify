@@ -7,13 +7,10 @@ import {
 import { createComment } from "../../../graphql/mutations";
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api-graphql";
 
-export default async function pushNewComment(
-  postId: string,
-  commentContent: string
-) {
+export default async function pushNewComment(postId: string, content: string) {
   const newCommentInput: CreateCommentInput = {
-    postCommentsId: postId,
-    content: commentContent,
+    postId,
+    content,
   };
 
   const { data } = (await API.graphql({

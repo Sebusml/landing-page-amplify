@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "landingpageamplifyed0d18f4": {
+        "landingpageamplifyv2f0adca00f0adca00": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -18,10 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "landingpageamplifylandingpagelambdalayer": {
-            "Arn": "string"
-        },
-        "postLikeTrigger": {
+        "landingpageamplifylikebutton": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

@@ -6,6 +6,7 @@ export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
       id
+      type
       title
       contents
       image
@@ -13,10 +14,10 @@ export const getPost = /* GraphQL */ `
       comments {
         items {
           id
+          postId
           content
           createdAt
           updatedAt
-          postCommentsId
           owner
         }
         nextToken
@@ -36,6 +37,42 @@ export const listPosts = /* GraphQL */ `
     listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        type
+        title
+        contents
+        image
+        upvotes
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const postsByDate = /* GraphQL */ `
+  query PostsByDate(
+    $type: String!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    postsByDate(
+      type: $type
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        type
         title
         contents
         image
@@ -55,23 +92,10 @@ export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
       id
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
+      postId
       content
       createdAt
       updatedAt
-      postCommentsId
       owner
     }
   }
@@ -85,20 +109,10 @@ export const listComments = /* GraphQL */ `
     listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        post {
-          id
-          title
-          contents
-          image
-          upvotes
-          createdAt
-          updatedAt
-          owner
-        }
+        postId
         content
         createdAt
         updatedAt
-        postCommentsId
         owner
       }
       nextToken
@@ -110,19 +124,6 @@ export const getPostLike = /* GraphQL */ `
     getPostLike(id: $id) {
       id
       postID
-      post {
-        id
-        title
-        contents
-        image
-        upvotes
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        owner
-      }
       value
       createdAt
       updatedAt
@@ -140,16 +141,6 @@ export const listPostLikes = /* GraphQL */ `
       items {
         id
         postID
-        post {
-          id
-          title
-          contents
-          image
-          upvotes
-          createdAt
-          updatedAt
-          owner
-        }
         value
         createdAt
         updatedAt
