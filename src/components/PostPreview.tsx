@@ -39,7 +39,7 @@ export default function PostPreview({ post }: Props): ReactElement {
       const postComments = (await API.graphql(
         graphqlOperation(listComments, {
           filter: {
-            postCommentsId: {
+            postId: {
               eq: post.id,
             },
           },
