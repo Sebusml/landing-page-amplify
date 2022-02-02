@@ -7,8 +7,18 @@ import {
   PostLike,
 } from "../../../API";
 
+/**
+ * Increment the likes count of a post by the value amount.
+ *
+ * @param postID
+ * @param value number of likes to add.
+ * @returns Promise
+ */
 export default async function pushNewLike(postID: string, value: number = 1) {
   const newPostLikeInput: CreatePostLikeInput = { postID, value };
+  if (value == 0) {
+    throw new Error("not a big deal, avoid request");
+  }
 
   const { data } = (await API.graphql({
     query: createPostLike,
