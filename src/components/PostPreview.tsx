@@ -5,16 +5,18 @@ import CommentPreview from "./CommentPreview";
 import { API, graphqlOperation } from "aws-amplify";
 import { listComments } from "../graphql/queries";
 import { Post, ListCommentsQuery, Comment } from "../API";
+import LikeButton from "./LikeButton";
 
 interface Props {
   post: Post;
+  likeButtonCallback: Function;
 }
 
-// TODO: Add Likes mutations and state
-// TODO: Fetch number of comments for a post
-// TODO: (optional) Give loged users the option to comment on posts.
 // tailwind code sourced from https://tailwindcomponents.com/component/comment-section
-export default function PostPreview({ post }: Props): ReactElement {
+export default function PostPreview({
+  post,
+  likeButtonCallback,
+}: Props): ReactElement {
   const router = useRouter();
   const [likedEffect, setLikeEffect] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -83,17 +85,11 @@ export default function PostPreview({ post }: Props): ReactElement {
       <p className="text-sm">{post.contents}</p>
 
       <div className="mt-4 flex items-center">
-        <button
-          className="flex items-center hover:bg-gray-100 rounded p-1"
-          onClick={onLikePost}
-        >
-          <ThumbUpIcon
-            className={`${likedEffect && "animate-bounce"} h-6 text-gray-500`}
-          ></ThumbUpIcon>
-          <span className="text-sm text-gray-500 font-semibold">
-            &nbsp;{post.upvotes}&nbsp;Likes&nbsp;&nbsp;
-          </span>
-        </button>
+        <LikeButton
+          post={post}
+          path={`/signin`}
+          incrementLikesCount={likeButtonCallback}
+        ></LikeButton>
 
         <button
           className="flex items-center hover:bg-gray-100 rounded p-1"

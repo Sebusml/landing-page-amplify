@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import pushNewComment from "../api/comment/pushNewComment";
 import subscribeToNewCommentInPost from "../api/comment/subscribeToNewCommentInPost";
 import incrementLikesCount from "../api/postLike/pushNewLike";
+import LikeButton from "../../components/LikeButton";
 
 interface Props {
   post: Post;
@@ -27,12 +28,8 @@ interface CommentFormInput {
 // TODO: owner picture
 // Templated from https://github.com/tailwindtoolbox/Minimal-Blog/blob/master/index.html
 export default function IndividualPost({ post }: Props): ReactElement {
-  const { user } = useUser();
   const router = useRouter();
-  const [likedEffect, setLikeEffect] = useState(false);
-  const [debounceTimeoutId, setDebounceTimeoutId] = useState(0);
-  const [likeClicksCount, setLikeClicksCount] = useState(0);
-  const [likesCount, setLikesCount] = useState(post.upvotes);
+  const { user } = useUser();
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<Comment[]>(
     post.comments?.items as Comment[]
@@ -59,42 +56,6 @@ export default function IndividualPost({ post }: Props): ReactElement {
       .then((_) => resetField("content")) // Ignore new comment obj response since updates are done with subscription
       .catch((error) => console.log(error));
   };
-
-  const onLikePost = (event) => {
-    // Like button animation
-    if (!likedEffect) {
-      setLikeEffect(true);
-      setTimeout(() => {
-        setLikeEffect(false);
-      }, 1500);
-    }
-
-    // Only logged users can like stuff
-    if (!user) {
-      router.push(`/signin`);
-      return;
-    }
-    // Immediately update so UI feels more responsive
-    setLikesCount((x) => x + 1);
-    setLikeClicksCount((x) => x + 1);
-  };
-
-  // Debounce network calls with the total number of clicks(new likes).
-  // This hook will execute numClicks + 1, due to the setLikesCount(0).
-  // Recursion ends cuz during the last call the likesCount is zero and the new value is zero
-  // , and as a result, the hook does not detect any DOM change.
-  // Note: We use a Hook due to (potential) async state updates.
-  useEffect(() => {
-    if (debounceTimeoutId) {
-      clearTimeout(debounceTimeoutId);
-    }
-    let timeoutID = window.setTimeout(() => {
-      incrementLikesCount(post.id, likeClicksCount)
-        .then(() => setLikeClicksCount(0))
-        .catch(() => setLikeClicksCount(0));
-    }, 600);
-    setDebounceTimeoutId(timeoutID);
-  }, [likeClicksCount, post.id]); // we need to exclude debounceTimeoutId to avoid infinite loops.
 
   // Initially get comments from Post object
   useEffect(() => {
@@ -139,21 +100,16 @@ export default function IndividualPost({ post }: Props): ReactElement {
         <p className="py-6">{post.contents}</p>
       </div>
       {/* <!--Divider--> */}
-      <div className="w-full px-4 text-xl text-gray-800 leading-normal">
+      <div className="flex w-full px-4 text-xl text-gray-800 leading-normal">
         {/* <!--Likes and replies buttons--> */}
         <div className="mt-4 mb-4 flex items-center">
-          <button
-            className="flex items-center hover:bg-gray-100 rounded p-1"
-            onClick={onLikePost}
-          >
-            <ThumbUpIcon
-              className={`${likedEffect && "animate-bounce"} h-6 text-gray-500`}
-            ></ThumbUpIcon>
-            <span className="text-sm text-gray-500 font-semibold">
-              &nbsp;{likesCount}&nbsp;Likes&nbsp;&nbsp;
-            </span>
-          </button>
-
+          <LikeButton
+            post={post}
+            path={`/signin`}
+            incrementLikesCount={incrementLikesCount}
+          ></LikeButton>
+        </div>
+        <div className="mt-4 mb-4 flex items-center">
           <button
             className="flex items-center hover:bg-gray-100 rounded p-1"
             onClick={toggleShowComments}
@@ -167,9 +123,10 @@ export default function IndividualPost({ post }: Props): ReactElement {
             </span>
           </button>
         </div>
-
-        {/* Toggle Comments */}
-        {showComments && comments && (
+      </div>
+      {/* Toggle comment secction */}
+      {showComments && comments && (
+        <div className="w-full px-4 items-center mb-4">
           <ul
             className="space-y-4 last:mb-4"
             onClick={(e) => e.stopPropagation()}
@@ -181,8 +138,9 @@ export default function IndividualPost({ post }: Props): ReactElement {
               ></CommentPreview>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
+      )}
+
       {/* Leave a comment */}
       <div className="w-full px-4 flex items-center mb-4">
         <form

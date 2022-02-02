@@ -5,6 +5,7 @@ import { useUser } from "../context/AuthContext";
 import { postsByDate } from "../graphql/queries";
 import { PostsByDateQuery, Post, ModelSortDirection } from "../API";
 import PostPreview from "../components/PostPreview";
+import incrementLikesCount from "./api/postLike/pushNewLike";
 
 const Home: NextPage = () => {
   const { user } = useUser();
@@ -39,7 +40,11 @@ const Home: NextPage = () => {
       </h1>
       <div className="space-y-4">
         {posts.map((post) => (
-          <PostPreview key={post.id} post={post}></PostPreview>
+          <PostPreview
+            key={post.id}
+            post={post}
+            likeButtonCallback={incrementLikesCount}
+          ></PostPreview>
         ))}
       </div>
     </main>
