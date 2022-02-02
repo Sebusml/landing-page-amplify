@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { ThumbUpIcon, AnnotationIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import CommentPreview from "./CommentPreview";
@@ -34,8 +34,14 @@ export default function PostPreview({ post }: Props): ReactElement {
 
   const onShowComments = async (event) => {
     event.stopPropagation();
+    if (comments) {
+      setShowComments((showComments) => !showComments);
+    }
+  };
+
+  const getComments = async () => {
+    console.log("get comments");
     try {
-      // TODO: Why the nextToken is alawys null for the post comments?
       const postComments = (await API.graphql(
         graphqlOperation(listComments, {
           filter: {
@@ -50,12 +56,16 @@ export default function PostPreview({ post }: Props): ReactElement {
       };
       if (postComments.data.listComments) {
         setComments(postComments.data.listComments.items as Comment[]);
-        setShowComments(!showComments);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  // Load comments at first render
+  useEffect(() => {
+    getComments();
+  }, []);
 
   return (
     <div
@@ -93,7 +103,7 @@ export default function PostPreview({ post }: Props): ReactElement {
           <AnnotationIcon className="h-6 text-gray-500"></AnnotationIcon>
           <span className="text-sm text-gray-500 font-semibold">
             &nbsp;
-            {post.comments?.items ? post.comments?.items.length : 0}
+            {comments ? comments.length : 0}
             &nbsp;Replies
           </span>
         </button>
