@@ -31,7 +31,6 @@ export default function PostPreview({
   };
 
   const getComments = async () => {
-    console.log("get comments");
     try {
       const postComments = (await API.graphql(
         graphqlOperation(listComments, {

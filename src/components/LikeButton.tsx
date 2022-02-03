@@ -66,9 +66,16 @@ export default function LikeButton({
     }
     return () => {
       clearTimeout(debounceTimeoutId);
-      clearTimeout(animationTimeoutId);
     };
   }, [likeClicksCount, post.id]); // we need to exclude debounceTimeoutId to avoid infinite loops.
+
+  // Cleanup hook for annimation
+  useEffect(() => {
+    return () => {
+      console.log("asdf");
+      clearTimeout(animationTimeoutId);
+    };
+  }, []);
 
   return (
     <button
