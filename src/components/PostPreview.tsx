@@ -18,21 +18,10 @@ export default function PostPreview({
   likeButtonCallback,
 }: Props): ReactElement {
   const router = useRouter();
-  const [likedEffect, setLikeEffect] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
 
   const formattedDate = new Date(post.createdAt).toDateString();
-  const onLikePost = (event) => {
-    event.stopPropagation();
-    // Like button animation
-    if (!likedEffect) {
-      setLikeEffect(true);
-      setTimeout(() => {
-        setLikeEffect(false);
-      }, 1500);
-    }
-  };
 
   const onShowComments = async (event) => {
     event.stopPropagation();

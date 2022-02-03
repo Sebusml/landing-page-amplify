@@ -19,24 +19,29 @@ export default function LikeButton({
   const { user } = useUser();
   const [likedEffect, setLikeEffect] = useState(false);
   const [debounceTimeoutId, setDebounceTimeoutId] = useState(0);
+  const [animationTimeoutId, setAnimationTimeoutId] = useState(0);
   const [likeClicksCount, setLikeClicksCount] = useState(0);
   const [likesCount, setLikesCount] = useState(post.upvotes);
 
   const onLikePost = (event) => {
     event.stopPropagation();
+    // Only logged users can like stuff
+    if (!user) {
+      clearTimeout(debounceTimeoutId);
+      clearTimeout(animationTimeoutId);
+      router.push(path);
+      return;
+    }
+
     // Like button animation
     if (!likedEffect) {
       setLikeEffect(true);
-      setTimeout(() => {
+      const timeout = window.setTimeout(() => {
         setLikeEffect(false);
       }, 1500);
+      setAnimationTimeoutId(timeout);
     }
 
-    // Only logged users can like stuff
-    if (!user) {
-      router.push(`/signin`);
-      return;
-    }
     // Immediately update so UI feels more responsive
     setLikesCount((x) => x + 1);
     setLikeClicksCount((x) => x + 1);
@@ -48,18 +53,20 @@ export default function LikeButton({
   // , and as a result, the hook does not detect any DOM change.
   // Note: We use a Hook due to (potential) async state updates.
   useEffect(() => {
-    if (debounceTimeoutId) {
-      clearTimeout(debounceTimeoutId);
+    if (likeClicksCount != 0) {
+      if (debounceTimeoutId) {
+        clearTimeout(debounceTimeoutId);
+      }
+      let timeoutID = window.setTimeout(() => {
+        incrementLikesCount(post.id, likeClicksCount)
+          .then(() => setLikeClicksCount(0))
+          .catch(() => setLikeClicksCount(0));
+      }, 1000);
+      setDebounceTimeoutId(timeoutID);
     }
-    let timeoutID = window.setTimeout(() => {
-      incrementLikesCount(post.id, likeClicksCount)
-        .then(() => setLikeClicksCount(0))
-        .catch(() => setLikeClicksCount(0));
-    }, 600);
-    setDebounceTimeoutId(timeoutID);
-
     return () => {
       clearTimeout(debounceTimeoutId);
+      clearTimeout(animationTimeoutId);
     };
   }, [likeClicksCount, post.id]); // we need to exclude debounceTimeoutId to avoid infinite loops.
 
