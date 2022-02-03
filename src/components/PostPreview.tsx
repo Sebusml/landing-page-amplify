@@ -59,7 +59,7 @@ export default function PostPreview({
 
   return (
     <li
-      className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed"
+      className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed hover:cursor-pointer"
       onClick={() => router.push(`/post/${post.id}`)}
     >
       <span className="text-xs">

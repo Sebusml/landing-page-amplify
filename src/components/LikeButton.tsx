@@ -72,7 +72,6 @@ export default function LikeButton({
   // Cleanup hook for annimation
   useEffect(() => {
     return () => {
-      console.log("asdf");
       clearTimeout(animationTimeoutId);
     };
   }, []);
