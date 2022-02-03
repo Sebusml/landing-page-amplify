@@ -58,7 +58,7 @@ export default function PostPreview({
   }, []);
 
   return (
-    <div
+    <li
       className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed"
       onClick={() => router.push(`/post/${post.id}`)}
     >
@@ -102,6 +102,6 @@ export default function PostPreview({
           ))}
         </ul>
       )}
-    </div>
+    </li>
   );
 }

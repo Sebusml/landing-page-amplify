@@ -36,9 +36,9 @@ const Home: NextPage = () => {
   return (
     <main className="antialiased mx-auto max-w-screen-sm pt-8 px-4 md:px-6">
       <h1 className="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
-        Welcome to our blog
+        Lorem Ipsum
       </h1>
-      <div className="space-y-4">
+      <ul className="space-y-4 last:mb-4">
         {posts.map((post) => (
           <PostPreview
             key={post.id}
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
             likeButtonCallback={incrementLikesCount}
           ></PostPreview>
         ))}
-      </div>
+      </ul>
     </main>
   );
 };
