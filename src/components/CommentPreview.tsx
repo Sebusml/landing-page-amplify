@@ -1,4 +1,5 @@
 import { ReactElement, useState } from "react";
+import Image from "next/image";
 import { Comment } from "../API";
 
 interface Props {
@@ -11,7 +12,7 @@ export default function CommentPreview({ comment }: Props): ReactElement {
   return (
     <li className="flex mb-4">
       <div className="flex-shrink-0 mr-3">
-        <img
+        <Image
           className="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8"
           src="http://i.pravatar.cc/50"
           alt=""

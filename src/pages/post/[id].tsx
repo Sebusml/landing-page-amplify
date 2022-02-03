@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Link from "next/link";
@@ -184,7 +185,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
       <hr className="border-b-2 border-gray-400 mb-8 mt-8 mx-4" />
       {/* <!--Author--> */}
       <div className="flex w-full items-center font-sans px-4">
-        <img
+        <Image
           className="w-10 h-10 rounded-full mr-4"
           src="http://i.pravatar.cc/300"
           alt="Avatar of Author"

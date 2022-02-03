@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useUser } from "../context/AuthContext";
 import Auth from "@aws-amplify/auth";
@@ -54,7 +55,7 @@ export default function Header() {
                 </button>
               </li>
               <li className="mr-3">
-                <img
+                <Image
                   className="rounded-full w-6 h-6 sm:w-8 sm:h-8"
                   src="http://i.pravatar.cc/50"
                   alt=""

@@ -23,9 +23,9 @@ export default function PostPreview({
 
   const formattedDate = new Date(post.createdAt).toDateString();
 
-  const onShowComments = async (event) => {
+  const onShowComments = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    if (comments) {
+    if (comments && comments.length > 0) {
       setShowComments((showComments) => !showComments);
     }
   };
@@ -55,7 +55,7 @@ export default function PostPreview({
   // Load comments at first render
   useEffect(() => {
     getComments();
-  }, []);
+  }, [getComments]);
 
   return (
     <li

@@ -23,7 +23,7 @@ export default function LikeButton({
   const [likeClicksCount, setLikeClicksCount] = useState(0);
   const [likesCount, setLikesCount] = useState(post.upvotes);
 
-  const onLikePost = (event) => {
+  const onLikePost = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     // Only logged users can like stuff
     if (!user) {
