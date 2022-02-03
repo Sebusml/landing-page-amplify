@@ -70,7 +70,9 @@ export default function PostPreview({
         <strong>{post.title}</strong>
       </p>
 
-      <p className="text-sm">{post.contents}</p>
+      <p className="text-sm max-h-40 text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent">
+        {post.contents}
+      </p>
 
       <div className="mt-4 flex items-center">
         <LikeButton
