@@ -57,7 +57,9 @@ export default function Header() {
               <li className="mr-3">
                 <Image
                   className="rounded-full w-6 h-6 sm:w-8 sm:h-8"
-                  src="http://i.pravatar.cc/50"
+                  src="https://i.pravatar.cc/50"
+                  width="50"
+                  height="50"
                   alt=""
                 />
               </li>

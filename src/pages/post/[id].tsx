@@ -187,8 +187,10 @@ export default function IndividualPost({ post }: Props): ReactElement {
       <div className="flex w-full items-center font-sans px-4">
         <Image
           className="w-10 h-10 rounded-full mr-4"
-          src="http://i.pravatar.cc/300"
+          src="https://i.pravatar.cc/50"
           alt="Avatar of Author"
+          width="50"
+          height="50"
         />
         <div className="flex-1 px-2">
           <p className="text-base font-bold text-base md:text-xl leading-none mb-2">

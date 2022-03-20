@@ -14,7 +14,9 @@ export default function CommentPreview({ comment }: Props): ReactElement {
       <div className="flex-shrink-0 mr-3">
         <Image
           className="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8"
-          src="http://i.pravatar.cc/50"
+          src="https://i.pravatar.cc/50"
+          width="50"
+          height="50"
           alt=""
         />
       </div>
