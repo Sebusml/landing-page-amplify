@@ -240,7 +240,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+                <div className="mt-12 lg:m-0 lg:relative">
                   <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
                     <img
                       className="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
@@ -250,37 +250,33 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              {/* Traction KPIs */}
-              <div className="mt-12">
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  <div className="pt-6 flex">
-                    <span className="font-extrabold sm:mt-5 sm:text-6xl lg:mt-6 xl:text-5xl text-purple-500">
-                      500+
-                    </span>
-                    <span className="sm:mt-5 sm:text-6xl lg:mt-8 xl:text-4xl text-purple-200">
-                      Members
-                    </span>
-                  </div>
-
-                  <div className="pt-6 flex align-baseline">
-                    <p className="font-extrabold sm:mt-5 sm:text-6xl lg:mt-6 xl:text-5xl text-pink-500">
-                      10K+
-                    </p>
-                    <p className="sm:mt-5 sm:text-6xl lg:mt-8 xl:text-4xl text-pink-200">
-                      Support hours
-                    </p>
-                  </div>
-
-                  <div className="pt-6 flex align-baseline">
-                    <p className="font-extrabold sm:mt-5 sm:text-6xl lg:mt-6 xl:text-5xl text-green-500">
-                      10+
-                    </p>
-                    <p className="sm:mt-5 sm:text-6xl lg:mt-8 xl:text-4xl text-green-200">
-                      Facilitators
-                    </p>
-                  </div>
+              {/* Traction stats */}
+              <dl className="mt-16 text-center lg:mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
+                <div className="flex flex-row place-content-center items-center">
+                  <dt className="order-2 mt-2 text-4xl leading-6 font-medium text-purple-200">
+                    Members
+                  </dt>
+                  <dd className="order-1 text-5xl font-extrabold text-purple-500">
+                    500+
+                  </dd>
                 </div>
-              </div>
+                <div className="flex flex-row place-content-center items-center mt-10 sm:mt-0">
+                  <dt className="order-2 mt-2 text-4xl leading-6 font-medium text-pink-200">
+                    Support hours
+                  </dt>
+                  <dd className="order-1 text-5xl font-extrabold text-pink-500">
+                    10K+
+                  </dd>
+                </div>
+                <div className="flex flex-row place-content-center items-center mt-10 sm:mt-0">
+                  <dt className="order-2 mt-2 text-4xl leading-6 font-medium text-green-200">
+                    Facilitators
+                  </dt>
+                  <dd className="order-1 text-5xl font-extrabold text-green-500">
+                    10+
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
 
