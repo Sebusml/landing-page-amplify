@@ -5,6 +5,7 @@ import awsconfig from "../aws-exports";
 import AuthContext from "../context/AuthContext";
 import React from "react";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 Amplify.configure({ ...awsconfig, ssr: true });
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AuthContext>
         <NavBar />
         <Component {...pageProps} />
+        <Footer></Footer>
       </AuthContext>
     </React.Fragment>
   );
