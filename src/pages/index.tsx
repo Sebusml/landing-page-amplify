@@ -18,40 +18,21 @@ const tractionNumbers = [
 const navigation = [{ name: "Posts", href: "posts" }];
 const features = [
   {
-    name: "Push to Deploy",
+    name: "We bring together 8-10 people",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi vitae lobortis.",
-    icon: CloudUploadIcon,
+      "Based on shared professional interest: women in tech, founders, creators",
+    icon: "female-entrepreneurs-business-courses.svg",
   },
   {
-    name: "SSL Certificates",
-    description:
-      "Qui aut temporibus nesciunt vitae dicta repellat sit dolores pariatur. Temporibus qui illum aut.",
-    icon: LockClosedIcon,
+    name: "Each group is led by a professional facilitator",
+    description: "We provide safe and caring environment",
+    icon: "Girl-Using-Laptop-Flat-Illustration-Graphics.svg",
   },
   {
-    name: "Simple Queues",
+    name: "60 min online sessions weekly",
     description:
-      "Rerum quas incidunt deleniti quaerat suscipit mollitia. Amet repellendus ut odit dolores qui.",
-    icon: RefreshIcon,
-  },
-  {
-    name: "Advanced Security",
-    description:
-      "Ullam laboriosam est voluptatem maxime ut mollitia commodi. Et dignissimos suscipit perspiciatis.",
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: "Powerful API",
-    description:
-      "Ab a facere voluptatem in quia corrupti veritatis aliquam. Veritatis labore quaerat ipsum quaerat id.",
-    icon: CogIcon,
-  },
-  {
-    name: "Database Backups",
-    description:
-      "Quia qui et est officia cupiditate qui consectetur. Ratione similique et impedit ea ipsum et.",
-    icon: ServerIcon,
+      "$15/week - more affordable than any therapy and works better than 1:1",
+    icon: "girl_using_laptop_side_angle.svg",
   },
 ];
 const blogPosts = [
@@ -250,8 +231,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              {/* Traction stats */}
-              <dl className="mt-16 text-center lg:mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
+            </div>
+          </div>
+          {/* Traction stats */}
+          <div className="pt-10 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+            <div className="mx-auto max-w-7xl lg:px-8">
+              <dl className="text-center lg:mx-auto lg:grid lg:grid-cols-3 lg:gap-8">
                 <div className="flex flex-row place-content-center items-center">
                   <dt className="order-2 mt-2 text-4xl leading-6 font-medium text-purple-200">
                     Members
@@ -273,11 +258,32 @@ export default function Home() {
                     Facilitators
                   </dt>
                   <dd className="order-1 text-5xl font-extrabold text-green-500">
-                    10+
+                    50+
                   </dd>
                 </div>
               </dl>
             </div>
+          </div>
+          {/* Generic Three Step */}
+          <div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 pb-14">
+            <h2 className="sr-only">A better way to send money.</h2>
+            <dl className="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
+              {features.map((feature) => (
+                <div key={feature.name}>
+                  <div className="flex items-center justify-center">
+                    <img className="" src={feature.icon} alt="" />
+                  </div>
+                  <dt>
+                    <p className="mt-5 text-lg leading-6 font-medium text-gray-900">
+                      {feature.name}
+                    </p>
+                  </dt>
+                  <dd className="mt-2 text-base text-gray-500">
+                    {feature.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           {/* Feature section with screenshot */}
@@ -305,7 +311,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           {/* Feature section with grid */}
           <div className="relative bg-white py-16 sm:py-24 lg:py-32">
             <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
@@ -348,57 +353,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* Testimonial section */}
-          <div className="pb-16 bg-gradient-to-r from-teal-500 to-cyan-600 lg:pb-0 lg:z-10 lg:relative">
-            <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
-              <div className="relative lg:-my-8">
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"
-                />
-                <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
-                  <div className="aspect-w-10 aspect-h-6 rounded-xl shadow-xl overflow-hidden sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
-                    <img
-                      className="object-cover lg:h-full lg:w-full"
-                      src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="mt-12 lg:m-0 lg:col-span-2 lg:pl-8">
-                <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:px-0 lg:py-20 lg:max-w-none">
-                  <blockquote>
-                    <div>
-                      <svg
-                        className="h-12 w-12 text-white opacity-25"
-                        fill="currentColor"
-                        viewBox="0 0 32 32"
-                        aria-hidden="true"
-                      >
-                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                      </svg>
-                      <p className="mt-6 text-2xl font-medium text-white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Sed urna nulla vitae laoreet augue. Amet feugiat est
-                        integer dolor auctor adipiscing nunc urna, sit.
-                      </p>
-                    </div>
-                    <footer className="mt-6">
-                      <p className="text-base font-medium text-white">
-                        Judith Black
-                      </p>
-                      <p className="text-base font-medium text-cyan-100">
-                        CEO at PureInsights
-                      </p>
-                    </footer>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Blog section */}
           <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
             <div className="relative">
@@ -479,7 +433,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           {/* CTA Section */}
           <div className="relative bg-gray-900">
             <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
