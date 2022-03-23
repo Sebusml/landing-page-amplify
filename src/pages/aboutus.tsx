@@ -6,7 +6,7 @@ export default function AboutUs() {
           <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
             communities
           </h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-indigo-600 sm:text-4xl">
             What makes us different
           </p>
         </div>
@@ -24,6 +24,8 @@ export default function AboutUs() {
                 burnout at work. So we created a group that helps us overcome
                 negative feelings so we can start feeling happy again! You
                 don&apos;t have to struggle in silence. Get support from peers.
+                <br />
+                <br />
               </p>
               <p>
                 Connect with other Women in Tech, Founders and Creators. One of
@@ -33,6 +35,8 @@ export default function AboutUs() {
                   before they hit a crisis point
                 </span>
                 .
+                <br />
+                <br />
               </p>
               <p>
                 Since many people are daunted by the idea of therapy, we
@@ -100,10 +104,10 @@ export default function AboutUs() {
                     <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                   </svg>
                   <p className="relative">
-                    Tincidunt integer commodo, cursus etiam aliquam neque, et.
-                    Consectetur pretium in volutpat, diam. Montes, magna cursus
-                    nulla feugiat dignissim id lobortis amet. Laoreet sem est
-                    phasellus eu proin massa, lectus.
+                    Peer support has been excellent. Helping us along the way,
+                    being there whenever you need people to talk to. I don’t
+                    know where to begin. They’re always there ... no matter what
+                    it is.
                   </p>
                 </div>
               </div>
