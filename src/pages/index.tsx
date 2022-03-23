@@ -1,12 +1,4 @@
-import {
-  CloudUploadIcon,
-  CogIcon,
-  LockClosedIcon,
-  RefreshIcon,
-  ServerIcon,
-  ShieldCheckIcon,
-} from "@heroicons/react/outline";
-import { ExternalLinkIcon } from "@heroicons/react/solid";
+import { MailIcon } from "@heroicons/react/solid";
 
 // TODO: Delete unused code.
 // TODO: Find a way of using these values to avoid duplicated code.
@@ -50,65 +42,7 @@ const features = [
     icon: "girl_using_laptop_side_angle.svg",
   },
 ];
-const blogPosts = [
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { name: "Article", href: "#" },
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-    preview:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.",
-    author: {
-      name: "Roel Aufderehar",
-      imageUrl:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      href: "#",
-    },
-    readingLength: "6 min",
-  },
-  {
-    id: 2,
-    title: "How to use search engine optimization to drive sales",
-    href: "#",
-    date: "Mar 10, 2020",
-    datetime: "2020-03-10",
-    category: { name: "Video", href: "#" },
-    imageUrl:
-      "https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-    preview:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
-    author: {
-      name: "Brenna Goyette",
-      imageUrl:
-        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      href: "#",
-    },
-    readingLength: "4 min",
-  },
-  {
-    id: 3,
-    title: "Improve your customer experience",
-    href: "#",
-    date: "Feb 12, 2020",
-    datetime: "2020-02-12",
-    category: { name: "Case Study", href: "#" },
-    imageUrl:
-      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-    preview:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
-    author: {
-      name: "Daniela Metz",
-      imageUrl:
-        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      href: "#",
-    },
-    readingLength: "11 min",
-  },
-];
+
 const footerNavigation = {
   solutions: [
     { name: "Marketing", href: "#" },
@@ -373,193 +307,103 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Feature section with screenshot */}
-          <div className="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32">
-            <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-              <div>
-                <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">
-                  Serverless
-                </h2>
-                <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-                  No server? No problem.
-                </p>
-                <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                  Phasellus lorem quam molestie id quisque diam aenean nulla in.
-                  Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
-                  condimentum id viverra nulla.
-                </p>
-              </div>
-              <div className="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
-                <img
-                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                  src="https://tailwindui.com/img/component-images/green-project-app-screenshot.jpg"
-                  alt=""
-                />
-              </div>
+          {/* Contact section */}
+          <div className="relative bg-white">
+            <div className="absolute inset-0">
+              <div className="absolute inset-y-0 left-0 w-1/2 bg-blue-50" />
             </div>
-          </div>
-          {/* Feature section with grid */}
-          <div className="relative bg-white py-16 sm:py-24 lg:py-32">
-            <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-              <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">
-                Deploy faster
-              </h2>
-              <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-                Everything you need to deploy your app
-              </p>
-              <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                Phasellus lorem quam molestie id quisque diam aenean nulla in.
-                Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
-                condimentum id viverra nulla.
-              </p>
-              <div className="mt-12">
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  {features.map((feature) => (
-                    <div key={feature.name} className="pt-6">
-                      <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                        <div className="-mt-6">
-                          <div>
-                            <span className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
-                              <feature.icon
-                                className="h-6 w-6 text-white"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          </div>
-                          <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                            {feature.name}
-                          </h3>
-                          <p className="mt-5 text-base text-gray-500">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </div>
+            <div className="relative max-w-7xl mx-auto lg:grid lg:grid-cols-5">
+              <div className="bg-blue-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                <div className="max-w-lg mx-auto">
+                  <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
+                    Let us talk!
+                  </h2>
+                  <p className="mt-3 text-lg leading-6 text-gray-500">
+                    Write us a message about the topics that you would like to
+                    discuss.
+                  </p>
+                  <dl className="mt-8 text-base text-gray-500">
+                    <div className="mt-3">
+                      <dt className="sr-only">Email</dt>
+                      <dd className="flex">
+                        <MailIcon
+                          className="flex-shrink-0 h-6 w-6 text-gray-400"
+                          aria-hidden="true"
+                        />
+                        <span className="ml-3">contact@opeers.com</span>
+                      </dd>
                     </div>
-                  ))}
+                  </dl>
                 </div>
               </div>
-            </div>
-          </div>
-          {/* Blog section */}
-          <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
-            <div className="relative">
-              <div className="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-                <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">
-                  Learn
-                </h2>
-                <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-                  Helpful Resources
-                </p>
-                <p className="mt-5 mx-auto max-w-prose text-xl text-gray-500">
-                  Phasellus lorem quam molestie id quisque diam aenean nulla in.
-                  Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
-                  condimentum id viverra nulla.
-                </p>
-              </div>
-              <div className="mt-12 mx-auto max-w-md px-4 grid gap-8 sm:max-w-lg sm:px-6 lg:px-8 lg:grid-cols-3 lg:max-w-7xl">
-                {blogPosts.map((post) => (
-                  <div
-                    key={post.id}
-                    className="flex flex-col rounded-lg shadow-lg overflow-hidden"
+              <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                <div className="max-w-lg mx-auto lg:max-w-none">
+                  <form
+                    action="#"
+                    method="POST"
+                    className="grid grid-cols-1 gap-y-6"
                   >
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-48 w-full object-cover"
-                        src={post.imageUrl}
-                        alt=""
+                    <div>
+                      <label htmlFor="full-name" className="sr-only">
+                        Full name
+                      </label>
+                      <input
+                        type="text"
+                        name="full-name"
+                        id="full-name"
+                        autoComplete="name"
+                        className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="Full name"
                       />
                     </div>
-                    <div className="flex-1 bg-white p-6 flex flex-col justify-between">
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-cyan-600">
-                          <a
-                            href={post.category.href}
-                            className="hover:underline"
-                          >
-                            {post.category.name}
-                          </a>
-                        </p>
-                        <a href={post.href} className="block mt-2">
-                          <p className="text-xl font-semibold text-gray-900">
-                            {post.title}
-                          </p>
-                          <p className="mt-3 text-base text-gray-500">
-                            {post.preview}
-                          </p>
-                        </a>
-                      </div>
-                      <div className="mt-6 flex items-center">
-                        <div className="flex-shrink-0">
-                          <a href={post.author.href}>
-                            <img
-                              className="h-10 w-10 rounded-full"
-                              src={post.author.imageUrl}
-                              alt={post.author.name}
-                            />
-                          </a>
-                        </div>
-                        <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-900">
-                            <a
-                              href={post.author.href}
-                              className="hover:underline"
-                            >
-                              {post.author.name}
-                            </a>
-                          </p>
-                          <div className="flex space-x-1 text-sm text-gray-500">
-                            <time dateTime={post.datetime}>{post.date}</time>
-                            <span aria-hidden="true">&middot;</span>
-                            <span>{post.readingLength} read</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          {/* CTA Section */}
-          <div className="relative bg-gray-900">
-            <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-              <img
-                className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100"
-                alt=""
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 mix-blend-multiply"
-              />
-            </div>
-            <div className="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
-              <div className="md:ml-auto md:w-1/2 md:pl-10">
-                <h2 className="text-base font-semibold uppercase tracking-wider text-gray-300">
-                  Award winning support
-                </h2>
-                <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  We’re here to help
-                </p>
-                <p className="mt-3 text-lg text-gray-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
-                  egestas tempus tellus etiam sed. Quam a scelerisque amet
-                  ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
-                  quisque ut interdum tincidunt duis.
-                </p>
-                <div className="mt-8">
-                  <div className="inline-flex rounded-md shadow">
-                    <a
-                      href="#"
-                      className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
-                    >
-                      Visit the help center
-                      <ExternalLinkIcon
-                        className="-mr-1 ml-3 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
+                    <div>
+                      <label htmlFor="email" className="sr-only">
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="Email"
                       />
-                    </a>
-                  </div>
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="sr-only">
+                        Phone
+                      </label>
+                      <input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        autoComplete="tel"
+                        className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                        placeholder="Phone"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="sr-only">
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"
+                        placeholder="Message"
+                        defaultValue={""}
+                      />
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -671,7 +515,7 @@ export default function Home() {
             </div>
             <div className="mt-12 border-t border-gray-200 py-8">
               <p className="text-base text-gray-400 xl:text-center">
-                &copy; 2020 Workflow, Inc. All rights reserved.
+                &copy; 2020 opeers, Inc. All rights reserved.
               </p>
             </div>
           </div>
