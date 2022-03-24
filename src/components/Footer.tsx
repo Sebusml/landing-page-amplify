@@ -4,10 +4,10 @@ import { Fragment, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const navigation = {
-  support: [{ name: "Pricing", href: "#" }],
+  support: [{ name: "Pricing", href: "/pricing" }],
   company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
+    { name: "About", href: "/aboutus" },
+    { name: "Blog", href: "posts" },
   ],
   legal: [
     { name: "Privacy", href: "#" },
@@ -265,7 +265,7 @@ export default function Footer({ subscribeToNewsLetter }: Props) {
             ))}
           </div>
           <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            &copy; 2020 Workflow, Inc. All rights reserved.
+            &copy; 2022 O&apos;peers, Inc. All rights reserved.
           </p>
         </div>
       </div>
