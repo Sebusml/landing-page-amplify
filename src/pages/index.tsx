@@ -69,12 +69,12 @@ export default function Home() {
                     <div className="mt-10 sm:mt-12">
                       <div className="sm:flex">
                         <div className="mt-3 sm:mt-0 sm:ml-3">
-                          <button
-                            type="submit"
+                          <a
+                            href="https://wipcommunity.as.me/schedule.php"
                             className="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-pink-300 to-purple-500 text-white font-medium hover:from-pink-600 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                           >
                             Connect now
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </div>
