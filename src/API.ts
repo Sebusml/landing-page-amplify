@@ -71,6 +71,43 @@ export type DeleteNewsLetterSubscribersInput = {
   id: string,
 };
 
+export type CreateContactMessageInput = {
+  id?: string | null,
+  email: string,
+  nameFull: string,
+  message: string,
+};
+
+export type ModelContactMessageConditionInput = {
+  email?: ModelStringInput | null,
+  nameFull?: ModelStringInput | null,
+  message?: ModelStringInput | null,
+  and?: Array< ModelContactMessageConditionInput | null > | null,
+  or?: Array< ModelContactMessageConditionInput | null > | null,
+  not?: ModelContactMessageConditionInput | null,
+};
+
+export type ContactMessage = {
+  __typename: "ContactMessage",
+  id: string,
+  email: string,
+  nameFull: string,
+  message: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateContactMessageInput = {
+  id: string,
+  email?: string | null,
+  nameFull?: string | null,
+  message?: string | null,
+};
+
+export type DeleteContactMessageInput = {
+  id: string,
+};
+
 export type CreatePostInput = {
   id?: string | null,
   type: string,
@@ -240,6 +277,22 @@ export type ModelNewsLetterSubscribersConnection = {
   nextToken?: string | null,
 };
 
+export type ModelContactMessageFilterInput = {
+  id?: ModelIDInput | null,
+  email?: ModelStringInput | null,
+  nameFull?: ModelStringInput | null,
+  message?: ModelStringInput | null,
+  and?: Array< ModelContactMessageFilterInput | null > | null,
+  or?: Array< ModelContactMessageFilterInput | null > | null,
+  not?: ModelContactMessageFilterInput | null,
+};
+
+export type ModelContactMessageConnection = {
+  __typename: "ModelContactMessageConnection",
+  items:  Array<ContactMessage | null >,
+  nextToken?: string | null,
+};
+
 export type ModelPostFilterInput = {
   id?: ModelIDInput | null,
   type?: ModelStringInput | null,
@@ -340,6 +393,57 @@ export type DeleteNewsLetterSubscribersMutation = {
     __typename: "NewsLetterSubscribers",
     id: string,
     email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateContactMessageMutationVariables = {
+  input: CreateContactMessageInput,
+  condition?: ModelContactMessageConditionInput | null,
+};
+
+export type CreateContactMessageMutation = {
+  createContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateContactMessageMutationVariables = {
+  input: UpdateContactMessageInput,
+  condition?: ModelContactMessageConditionInput | null,
+};
+
+export type UpdateContactMessageMutation = {
+  updateContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteContactMessageMutationVariables = {
+  input: DeleteContactMessageInput,
+  condition?: ModelContactMessageConditionInput | null,
+};
+
+export type DeleteContactMessageMutation = {
+  deleteContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -580,6 +684,44 @@ export type ListNewsLetterSubscribersQuery = {
   } | null,
 };
 
+export type GetContactMessageQueryVariables = {
+  id: string,
+};
+
+export type GetContactMessageQuery = {
+  getContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListContactMessagesQueryVariables = {
+  filter?: ModelContactMessageFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListContactMessagesQuery = {
+  listContactMessages?:  {
+    __typename: "ModelContactMessageConnection",
+    items:  Array< {
+      __typename: "ContactMessage",
+      id: string,
+      email: string,
+      nameFull: string,
+      message: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetPostQueryVariables = {
   id: string,
 };
@@ -790,6 +932,42 @@ export type OnDeleteNewsLetterSubscribersSubscription = {
     __typename: "NewsLetterSubscribers",
     id: string,
     email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateContactMessageSubscription = {
+  onCreateContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateContactMessageSubscription = {
+  onUpdateContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteContactMessageSubscription = {
+  onDeleteContactMessage?:  {
+    __typename: "ContactMessage",
+    id: string,
+    email: string,
+    nameFull: string,
+    message: string,
     createdAt: string,
     updatedAt: string,
   } | null,

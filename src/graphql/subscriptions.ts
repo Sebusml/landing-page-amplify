@@ -44,6 +44,42 @@ export const onDeleteNewsLetterSubscribers = /* GraphQL */ `
     }
   }
 `;
+export const onCreateContactMessage = /* GraphQL */ `
+  subscription OnCreateContactMessage {
+    onCreateContactMessage {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateContactMessage = /* GraphQL */ `
+  subscription OnUpdateContactMessage {
+    onUpdateContactMessage {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteContactMessage = /* GraphQL */ `
+  subscription OnDeleteContactMessage {
+    onDeleteContactMessage {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($owner: String) {
     onCreatePost(owner: $owner) {

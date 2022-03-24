@@ -33,6 +33,37 @@ export const listNewsLetterSubscribers = /* GraphQL */ `
     }
   }
 `;
+export const getContactMessage = /* GraphQL */ `
+  query GetContactMessage($id: ID!) {
+    getContactMessage(id: $id) {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listContactMessages = /* GraphQL */ `
+  query ListContactMessages(
+    $filter: ModelContactMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listContactMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        nameFull
+        message
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {

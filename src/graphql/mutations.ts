@@ -41,6 +41,51 @@ export const deleteNewsLetterSubscribers = /* GraphQL */ `
     }
   }
 `;
+export const createContactMessage = /* GraphQL */ `
+  mutation CreateContactMessage(
+    $input: CreateContactMessageInput!
+    $condition: ModelContactMessageConditionInput
+  ) {
+    createContactMessage(input: $input, condition: $condition) {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateContactMessage = /* GraphQL */ `
+  mutation UpdateContactMessage(
+    $input: UpdateContactMessageInput!
+    $condition: ModelContactMessageConditionInput
+  ) {
+    updateContactMessage(input: $input, condition: $condition) {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteContactMessage = /* GraphQL */ `
+  mutation DeleteContactMessage(
+    $input: DeleteContactMessageInput!
+    $condition: ModelContactMessageConditionInput
+  ) {
+    deleteContactMessage(input: $input, condition: $condition) {
+      id
+      email
+      nameFull
+      message
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!

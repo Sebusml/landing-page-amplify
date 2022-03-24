@@ -5,6 +5,15 @@ type NewsLetterSubscribers
   email: AWSEmail!
 }
 
+type ContactMessage
+  @model
+  @auth(rules: [{ allow: public, operations: [create] }]) {
+  id: ID!
+  email: AWSEmail!
+  nameFull: String!
+  message: String!
+}
+
 type Post
   @model
   @auth(
