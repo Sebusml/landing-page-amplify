@@ -127,7 +127,7 @@ export default function Home() {
                     <img className="" src={feature.icon} alt="" />
                   </div>
                   <dt>
-                    <p className="mt-5 text-lg leading-6 font-medium text-gray-900">
+                    <p className="mt-5 text-lg leading-6 font-medium text-gray-700">
                       {feature.name}
                     </p>
                   </dt>
@@ -180,14 +180,14 @@ export default function Home() {
           <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
             <div className="lg:grid lg:grid-cols-3 lg:gap-8">
               <div>
-                <h2 className="text-3xl font-extrabold text-gray-900">
+                <h2 className="text-3xl font-extrabold text-gray-700">
                   What holds you back?
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
                   Can’t find the answer you’re looking for? Reach out to our{" "}
                   <a
                     href="#"
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                    className="font-medium text-indigo-500 hover:text-indigo-500"
                   >
                     customer support
                   </a>{" "}
@@ -198,7 +198,7 @@ export default function Home() {
                 <dl className="space-y-12">
                   {faqs.map((faq) => (
                     <div key={faq.question}>
-                      <dt className="text-lg leading-6 font-medium text-gray-900">
+                      <dt className="text-lg leading-6 font-medium text-gray-700 line-through">
                         {faq.question}
                       </dt>
                       <dd className="mt-2 text-base text-gray-500">
