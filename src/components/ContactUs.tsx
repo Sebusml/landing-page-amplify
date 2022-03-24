@@ -1,7 +1,29 @@
-import { MailIcon } from "@heroicons/react/solid";
-import { ReactElement } from "react";
+import { Transition } from "@headlessui/react";
+import { CheckCircleIcon, MailIcon, XIcon } from "@heroicons/react/solid";
+import { Fragment, ReactElement, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-export default function ContactUs(): ReactElement {
+interface Props {
+  sendContactMessage: Function;
+}
+interface ContactMessageInputForm {
+  email: string;
+  nameFull: string;
+  message: string;
+}
+export default function ContactUs({ sendContactMessage }: Props): ReactElement {
+  const [showContacMessageSuccessOverlay, setShowContacMessageSuccessOverlay] =
+    useState(false);
+  const { register, reset, handleSubmit } = useForm<ContactMessageInputForm>();
+
+  const onSendContactMessage: SubmitHandler<ContactMessageInputForm> = async (
+    data
+  ) => {
+    await sendContactMessage(data);
+    reset();
+    setShowContacMessageSuccessOverlay(true);
+  };
+
   return (
     <div className="relative bg-white">
       <div className="absolute inset-0">
@@ -31,33 +53,50 @@ export default function ContactUs(): ReactElement {
             </dl>
           </div>
         </div>
+
         <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
           <div className="max-w-lg mx-auto lg:max-w-none">
-            <form action="#" method="POST" className="grid grid-cols-1 gap-y-6">
+            <form
+              id="contactMessageForm"
+              method="POST"
+              onSubmit={handleSubmit(onSendContactMessage)}
+              className="grid grid-cols-1 gap-y-6"
+            >
               <div>
-                <label htmlFor="full-name" className="sr-only">
+                <label htmlFor="nameFull" className="sr-only">
                   Full name
                 </label>
                 <input
                   type="text"
-                  name="full-name"
-                  id="full-name"
+                  id="nameFull"
                   autoComplete="name"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                   placeholder="Full name"
+                  {...register("nameFull", {
+                    required: {
+                      value: true,
+                      message: "Please enter a valid name.",
+                    },
+                  })}
                 />
               </div>
               <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
                 </label>
                 <input
-                  id="email"
-                  name="email"
+                  id="email-address"
                   type="email"
                   autoComplete="email"
+                  required
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                  placeholder="Email"
+                  placeholder="Email address"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Please enter a valid email.",
+                    },
+                  })}
                 />
               </div>
               <div>
@@ -66,11 +105,16 @@ export default function ContactUs(): ReactElement {
                 </label>
                 <textarea
                   id="message"
-                  name="message"
                   rows={6}
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"
                   placeholder="Message"
                   defaultValue={""}
+                  {...register("message", {
+                    required: {
+                      value: true,
+                      message: "Please enter a message.",
+                    },
+                  })}
                 />
               </div>
               <div>
@@ -82,6 +126,52 @@ export default function ContactUs(): ReactElement {
                 </button>
               </div>
             </form>
+            <div className="w-full flex flex-col items-center space-y-4 sm:items-end pt-2">
+              {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
+              <Transition
+                show={showContacMessageSuccessOverlay}
+                as={Fragment}
+                enter="transform ease-out duration-300 transition"
+                enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                enterTo="translate-y-0 opacity-100 sm:translate-x-0"
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+                  <div className="p-4">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <CheckCircleIcon
+                          className="h-6 w-6 text-green-400"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div className="ml-3 w-0 flex-1 pt-0.5">
+                        <p className="text-sm font-medium text-gray-900">
+                          Successfully submited!
+                        </p>
+                        <p className="mt-1 text-sm text-gray-500">
+                          Thank you for your message. We will get back to you
+                          shortly.
+                        </p>
+                      </div>
+                      <div className="ml-4 flex-shrink-0 flex">
+                        <button
+                          className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          onClick={() => {
+                            setShowContacMessageSuccessOverlay(false);
+                          }}
+                        >
+                          <span className="sr-only">Close</span>
+                          <XIcon className="h-5 w-5" aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Transition>
+            </div>
           </div>
         </div>
       </div>

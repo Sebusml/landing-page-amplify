@@ -1,6 +1,6 @@
-import { MailIcon } from "@heroicons/react/outline";
 import ContactUs from "../components/ContactUs";
+import pushNewContactMessage from "./api/contact/pushNewContactMessage";
 
 export default function contactUs() {
-  return <ContactUs></ContactUs>;
+  return <ContactUs sendContactMessage={pushNewContactMessage}></ContactUs>;
 }

@@ -1,4 +1,5 @@
 import ContactUs from "../components/ContactUs";
+import pushNewContactMessage from "./api/contact/pushNewContactMessage";
 
 // TODO: Find a way of using these values to avoid duplicated code.
 const faqs = [
@@ -211,7 +212,7 @@ export default function Home() {
             </div>
           </div>
 
-          <ContactUs></ContactUs>
+          <ContactUs sendContactMessage={pushNewContactMessage}></ContactUs>
         </main>
       </div>
     </div>
