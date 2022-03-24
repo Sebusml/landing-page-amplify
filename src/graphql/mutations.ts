@@ -2,6 +2,45 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createNewsLetterSubscribers = /* GraphQL */ `
+  mutation CreateNewsLetterSubscribers(
+    $input: CreateNewsLetterSubscribersInput!
+    $condition: ModelNewsLetterSubscribersConditionInput
+  ) {
+    createNewsLetterSubscribers(input: $input, condition: $condition) {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateNewsLetterSubscribers = /* GraphQL */ `
+  mutation UpdateNewsLetterSubscribers(
+    $input: UpdateNewsLetterSubscribersInput!
+    $condition: ModelNewsLetterSubscribersConditionInput
+  ) {
+    updateNewsLetterSubscribers(input: $input, condition: $condition) {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteNewsLetterSubscribers = /* GraphQL */ `
+  mutation DeleteNewsLetterSubscribers(
+    $input: DeleteNewsLetterSubscribersInput!
+    $condition: ModelNewsLetterSubscribersConditionInput
+  ) {
+    deleteNewsLetterSubscribers(input: $input, condition: $condition) {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!

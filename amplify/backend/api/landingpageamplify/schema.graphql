@@ -1,3 +1,10 @@
+type NewsLetterSubscribers
+  @model
+  @auth(rules: [{ allow: public, operations: [create] }]) {
+  id: ID!
+  email: AWSEmail!
+}
+
 type Post
   @model
   @auth(

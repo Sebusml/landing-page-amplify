@@ -14,6 +14,36 @@ export const onCommentByPostId = /* GraphQL */ `
     }
   }
 `;
+export const onCreateNewsLetterSubscribers = /* GraphQL */ `
+  subscription OnCreateNewsLetterSubscribers {
+    onCreateNewsLetterSubscribers {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateNewsLetterSubscribers = /* GraphQL */ `
+  subscription OnUpdateNewsLetterSubscribers {
+    onUpdateNewsLetterSubscribers {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteNewsLetterSubscribers = /* GraphQL */ `
+  subscription OnDeleteNewsLetterSubscribers {
+    onDeleteNewsLetterSubscribers {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($owner: String) {
     onCreatePost(owner: $owner) {

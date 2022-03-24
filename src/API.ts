@@ -2,26 +2,16 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreatePostInput = {
+export type CreateNewsLetterSubscribersInput = {
   id?: string | null,
-  type: string,
-  title: string,
-  contents: string,
-  image?: string | null,
-  upvotes: number,
-  createdAt?: string | null,
+  email: string,
 };
 
-export type ModelPostConditionInput = {
-  type?: ModelStringInput | null,
-  title?: ModelStringInput | null,
-  contents?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  upvotes?: ModelIntInput | null,
-  createdAt?: ModelStringInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
+export type ModelNewsLetterSubscribersConditionInput = {
+  email?: ModelStringInput | null,
+  and?: Array< ModelNewsLetterSubscribersConditionInput | null > | null,
+  or?: Array< ModelNewsLetterSubscribersConditionInput | null > | null,
+  not?: ModelNewsLetterSubscribersConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -62,6 +52,45 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type NewsLetterSubscribers = {
+  __typename: "NewsLetterSubscribers",
+  id: string,
+  email: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateNewsLetterSubscribersInput = {
+  id: string,
+  email?: string | null,
+};
+
+export type DeleteNewsLetterSubscribersInput = {
+  id: string,
+};
+
+export type CreatePostInput = {
+  id?: string | null,
+  type: string,
+  title: string,
+  contents: string,
+  image?: string | null,
+  upvotes: number,
+  createdAt?: string | null,
+};
+
+export type ModelPostConditionInput = {
+  type?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  contents?: ModelStringInput | null,
+  image?: ModelStringInput | null,
+  upvotes?: ModelIntInput | null,
+  createdAt?: ModelStringInput | null,
+  and?: Array< ModelPostConditionInput | null > | null,
+  or?: Array< ModelPostConditionInput | null > | null,
+  not?: ModelPostConditionInput | null,
 };
 
 export type ModelIntInput = {
@@ -197,6 +226,20 @@ export type DeletePostLikeInput = {
   id: string,
 };
 
+export type ModelNewsLetterSubscribersFilterInput = {
+  id?: ModelIDInput | null,
+  email?: ModelStringInput | null,
+  and?: Array< ModelNewsLetterSubscribersFilterInput | null > | null,
+  or?: Array< ModelNewsLetterSubscribersFilterInput | null > | null,
+  not?: ModelNewsLetterSubscribersFilterInput | null,
+};
+
+export type ModelNewsLetterSubscribersConnection = {
+  __typename: "ModelNewsLetterSubscribersConnection",
+  items:  Array<NewsLetterSubscribers | null >,
+  nextToken?: string | null,
+};
+
 export type ModelPostFilterInput = {
   id?: ModelIDInput | null,
   type?: ModelStringInput | null,
@@ -255,6 +298,51 @@ export type ModelPostLikeConnection = {
   __typename: "ModelPostLikeConnection",
   items:  Array<PostLike | null >,
   nextToken?: string | null,
+};
+
+export type CreateNewsLetterSubscribersMutationVariables = {
+  input: CreateNewsLetterSubscribersInput,
+  condition?: ModelNewsLetterSubscribersConditionInput | null,
+};
+
+export type CreateNewsLetterSubscribersMutation = {
+  createNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateNewsLetterSubscribersMutationVariables = {
+  input: UpdateNewsLetterSubscribersInput,
+  condition?: ModelNewsLetterSubscribersConditionInput | null,
+};
+
+export type UpdateNewsLetterSubscribersMutation = {
+  updateNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteNewsLetterSubscribersMutationVariables = {
+  input: DeleteNewsLetterSubscribersInput,
+  condition?: ModelNewsLetterSubscribersConditionInput | null,
+};
+
+export type DeleteNewsLetterSubscribersMutation = {
+  deleteNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
 export type CreatePostMutationVariables = {
@@ -458,6 +546,40 @@ export type DeletePostLikeMutation = {
   } | null,
 };
 
+export type GetNewsLetterSubscribersQueryVariables = {
+  id: string,
+};
+
+export type GetNewsLetterSubscribersQuery = {
+  getNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListNewsLetterSubscribersQueryVariables = {
+  filter?: ModelNewsLetterSubscribersFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListNewsLetterSubscribersQuery = {
+  listNewsLetterSubscribers?:  {
+    __typename: "ModelNewsLetterSubscribersConnection",
+    items:  Array< {
+      __typename: "NewsLetterSubscribers",
+      id: string,
+      email: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetPostQueryVariables = {
   id: string,
 };
@@ -640,6 +762,36 @@ export type OnCommentByPostIdSubscription = {
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
+  } | null,
+};
+
+export type OnCreateNewsLetterSubscribersSubscription = {
+  onCreateNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateNewsLetterSubscribersSubscription = {
+  onUpdateNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteNewsLetterSubscribersSubscription = {
+  onDeleteNewsLetterSubscribers?:  {
+    __typename: "NewsLetterSubscribers",
+    id: string,
+    email: string,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 

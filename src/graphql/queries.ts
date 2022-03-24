@@ -2,6 +2,37 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getNewsLetterSubscribers = /* GraphQL */ `
+  query GetNewsLetterSubscribers($id: ID!) {
+    getNewsLetterSubscribers(id: $id) {
+      id
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listNewsLetterSubscribers = /* GraphQL */ `
+  query ListNewsLetterSubscribers(
+    $filter: ModelNewsLetterSubscribersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNewsLetterSubscribers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        email
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
