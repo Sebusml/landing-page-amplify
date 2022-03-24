@@ -1,12 +1,6 @@
 import ContactUs from "../components/ContactUs";
 
-// TODO: Delete unused code.
 // TODO: Find a way of using these values to avoid duplicated code.
-const tractionNumbers = [
-  { number: "500+", kpi: "Members", color: "purple" },
-  { number: "10K+", kpi: "Support hours", color: "pink" },
-  { number: "10+", kpi: "Facilitators", color: "green" },
-];
 const faqs = [
   {
     question: "Online approach to mental health does not sounds serious",
@@ -109,7 +103,7 @@ export default function Home() {
                     Support hours
                   </dt>
                   <dd className="order-1 text-5xl font-extrabold text-pink-500">
-                    10K+
+                    1K+
                   </dd>
                 </div>
                 <div className="flex flex-row place-content-center items-center mt-10 sm:mt-0">
