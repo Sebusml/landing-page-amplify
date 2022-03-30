@@ -121,7 +121,7 @@ export default function AboutUs() {
                 </div>
                 <span className="relative ml-4 text-indigo-300 font-semibold leading-6 sm:ml-24 sm:pl-1">
                   <p className="text-white font-semibold sm:inline">
-                    Ardak Yeraliyeva
+                    Ardak Yerali
                   </p>{" "}
                   <p className="sm:inline">CEO at O&apos;Peers</p>
                 </span>

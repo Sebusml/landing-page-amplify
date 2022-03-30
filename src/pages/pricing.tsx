@@ -4,7 +4,7 @@ const includedFeatures = [
   "Weekly sessions",
   "Member resources",
   "Private forum access",
-  "A kiss from our CEO",
+  "A hug from our CEO",
 ];
 
 export default function Pricing() {
@@ -32,11 +32,6 @@ export default function Pricing() {
                 <h3 className="text-2xl font-extrabold text-indigo-500 sm:text-3xl">
                   Monthly Membership
                 </h3>
-                <p className="mt-6 text-base text-gray-500">
-                  Lorem ipsum dolor sit amet consect etur adipisicing elit.
-                  Itaque amet indis perferendis blanditiis repellendus etur
-                  quidem assumenda.
-                </p>
                 <div className="mt-8">
                   <div className="flex items-center">
                     <h4 className="flex-shrink-0 pr-4 bg-white text-sm tracking-wider font-semibold uppercase text-indigo-600">
@@ -67,7 +62,7 @@ export default function Pricing() {
               </div>
               <div className="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12">
                 <div className="mt-4 flex items-center justify-center text-5xl font-extrabold text-indigo-600">
-                  <span>$20</span>
+                  <span>$40</span>
                   <span className="ml-3 text-xl font-medium text-indigo-500">
                     USD
                   </span>
@@ -80,7 +75,7 @@ export default function Pricing() {
                 <div className="mt-6">
                   <div className="rounded-md shadow">
                     <a
-                      href="#"
+                      href="https://wipcommunity.as.me/schedule.php"
                       className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-900"
                     >
                       Get Access
