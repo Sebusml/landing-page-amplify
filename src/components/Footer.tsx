@@ -5,10 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 const navigation = {
   support: [{ name: "Pricing", href: "/pricing" }],
-  company: [
-    { name: "About", href: "/aboutus" },
-    { name: "Blog", href: "posts" },
-  ],
+  company: [{ name: "About", href: "/aboutus" }],
   legal: [
     { name: "Privacy", href: "#" },
     { name: "Terms", href: "#" },
