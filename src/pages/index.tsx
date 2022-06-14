@@ -31,9 +31,8 @@ const features = [
     icon: "Girl-Using-Laptop-Flat-Illustration-Graphics.svg",
   },
   {
-    name: "60 min online sessions weekly",
-    description:
-      "$15/week - more affordable than any therapy and works better than 1:1",
+    name: "60-90 min weekly online sessions",
+    description: "More affordable than any therapy and works better than 1:1",
     icon: "girl_using_laptop_side_angle.svg",
   },
 ];
@@ -50,16 +49,16 @@ export default function Home() {
                   <div className="lg:py-24">
                     <h1 className="mt-4 text-4xl tracking-tight font-extrabold sm:mt-5 sm:text-6xl lg:mt-6 xl:text-5xl">
                       <span className="block text-indigo-500">
-                        Connect with peers in tech
+                        Burnout and stress prevention programs
                       </span>
                       <span className="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-200 sm:pb-5">
-                        for mental health support
+                        for remote teams
                       </span>
                     </h1>
                     <p className="text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl">
-                      Join our support groups for women in workplace. Overcome
-                      burnout, anxiety and imposter syndrome with the ones who
-                      support you.
+                      Join our therapist-directed virtual mental health support
+                      in which employees discuss their mental health and
+                      professional growth
                     </p>
                     <div className="mt-10 sm:mt-12">
                       <div className="sm:flex">
@@ -112,7 +111,7 @@ export default function Home() {
                     Facilitators
                   </dt>
                   <dd className="order-1 text-5xl font-extrabold text-green-500">
-                    50+
+                    30+
                   </dd>
                 </div>
               </dl>
@@ -164,7 +163,7 @@ export default function Home() {
                   </p>
                   <p className="text-base font-medium text-white mt-6">
                     Now it is easy to join your friends and community with
-                    PeersConnect. <br></br>Connect with the ones who truly
+                    O&apos;Peers. <br></br>Connect with the ones who truly
                     understands and support you.
                   </p>
                   <p className="mt-6 text-2xl font-medium text-white">
