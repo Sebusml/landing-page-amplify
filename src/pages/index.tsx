@@ -56,8 +56,8 @@ export default function Home() {
                       </span>
                     </h1>
                     <p className="text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl">
-                      Join our therapist-directed virtual mental health support
-                      in which employees discuss their mental health and
+                      Join our therapist-directed virtual support groups in
+                      which employees discuss their mental health and
                       professional growth
                     </p>
                     <div className="mt-10 sm:mt-12">
