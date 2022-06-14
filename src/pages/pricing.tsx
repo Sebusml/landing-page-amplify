@@ -3,7 +3,7 @@ import { CheckCircleIcon } from "@heroicons/react/solid";
 const includedFeatures = [
   "Weekly sessions",
   "Member resources",
-  "Private forum access",
+  "Live workshops",
   "A hug from our CEO",
 ];
 
@@ -62,7 +62,7 @@ export default function Pricing() {
               </div>
               <div className="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12">
                 <div className="mt-4 flex items-center justify-center text-5xl font-extrabold text-indigo-600">
-                  <span>$40</span>
+                  <span>$150</span>
                   <span className="ml-3 text-xl font-medium text-indigo-500">
                     USD
                   </span>
