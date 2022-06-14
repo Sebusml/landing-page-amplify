@@ -13,24 +13,24 @@ export default function AboutUs() {
         <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
           <p className="text-lg text-gray-500">
             O&apos;Peers is community-oriented mental health support groups for
-            women in workplace.
+            remote teams.
           </p>
         </div>
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
           <div className="relative z-10">
             <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none">
               <p>
-                Most people struggle with anxiety, imposter syndrome, and
-                burnout at work. So we created a group that helps us overcome
-                negative feelings so we can start feeling happy again! You
-                don&apos;t have to struggle in silence. Get support from peers.
+                We match employees with similar responsibilities, interests, and
+                pressure to discuss their mental wellness and professional
+                growth, find creative solutions to problems, and ultimately
+                learn to cope with stress. Our programs are structured and led
+                by a dedicated facilitator.
                 <br />
                 <br />
               </p>
               <p>
                 Connect with other Women in Tech, Founders and Creators. One of
-                our priorities is to reach women (#womenintech, #workingmoms,
-                #femalefounders, etc){" "}
+                our priorities is to reach women{" "}
                 <span className="font-bold">
                   before they hit a crisis point
                 </span>
@@ -112,18 +112,12 @@ export default function AboutUs() {
                 </div>
               </div>
               <cite className="relative flex items-center sm:items-start bg-indigo-600 rounded-b-lg not-italic py-5 px-6 sm:py-5 sm:pl-12 sm:pr-10 sm:mt-10">
-                <div className="relative rounded-full border-2 border-white sm:absolute sm:top-0 sm:transform sm:-translate-y-1/2">
-                  <img
-                    className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-indigo-300"
-                    src="ceo.jpeg"
-                    alt=""
-                  />
-                </div>
+                <div className="relative rounded-full border-2 border-white sm:absolute sm:top-0 sm:transform sm:-translate-y-1/2"></div>
                 <span className="relative ml-4 text-indigo-300 font-semibold leading-6 sm:ml-24 sm:pl-1">
                   <p className="text-white font-semibold sm:inline">
-                    Ardak Yerali
+                    Our members say
                   </p>{" "}
-                  <p className="sm:inline">CEO at O&apos;Peers</p>
+                  {/* <p className="sm:inline">CEO at O&apos;Peers</p> */}
                 </span>
               </cite>
             </blockquote>
