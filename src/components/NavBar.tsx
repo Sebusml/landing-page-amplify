@@ -57,7 +57,7 @@ export default function NavBar() {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <a
-                    href="https://wipcommunity.as.me/schedule.php"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdyW6gUiCQmJB7PMr_ey-Qt5I8ZDo7tTW81Abs1b7iUXBRMaA/viewform?usp=sf_link"
                     className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Connect now

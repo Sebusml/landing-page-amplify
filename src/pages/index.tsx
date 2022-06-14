@@ -64,7 +64,7 @@ export default function Home() {
                       <div className="sm:flex">
                         <div className="mt-3 sm:mt-0 sm:ml-3">
                           <a
-                            href="https://wipcommunity.as.me/schedule.php"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSdyW6gUiCQmJB7PMr_ey-Qt5I8ZDo7tTW81Abs1b7iUXBRMaA/viewform?usp=sf_link"
                             className="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-pink-300 to-purple-500 text-white font-medium hover:from-pink-600 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                           >
                             Connect now

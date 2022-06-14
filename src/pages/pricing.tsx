@@ -75,7 +75,7 @@ export default function Pricing() {
                 <div className="mt-6">
                   <div className="rounded-md shadow">
                     <a
-                      href="https://wipcommunity.as.me/schedule.php"
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdyW6gUiCQmJB7PMr_ey-Qt5I8ZDo7tTW81Abs1b7iUXBRMaA/viewform?usp=sf_link"
                       className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-900"
                     >
                       Get Access
