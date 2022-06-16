@@ -52,7 +52,7 @@ export default function Home() {
                         Burnout and stress prevention programs
                       </span>
                       <span className="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-200 sm:pb-5">
-                        for remote teams
+                        for hybrid teams
                       </span>
                     </h1>
                     <p className="text-base text-gray-500 sm:text-xl lg:text-lg xl:text-xl">
